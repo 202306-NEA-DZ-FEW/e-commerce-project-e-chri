@@ -81,7 +81,12 @@ function Navbar({}) {
         <div className="w-full flex flex-row justify-around">
           {categories.map((cat) => (
             <span key={cat} className="text-base font-medium">
-              {cat}
+              <Link
+                className="hover:border-b border-b-[#1E4445] hover:text-RedPoppy"
+                href={`./categories/${cat}`}
+              >
+                {cat}
+              </Link>
             </span>
           ))}
         </div>

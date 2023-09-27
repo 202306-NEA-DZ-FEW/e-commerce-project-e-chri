@@ -2,7 +2,6 @@ import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
-import Categories from "@/components/Categories/Categories"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
@@ -13,13 +12,12 @@ export default function Home({ products, categories }) {
   }
   // console.log("products", products)
   return (
-    <main className="bg-yellow-100  dark:bg-OxfordBlue ">
+    <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
         <button onClick={handleMode} className="bg-red-400">
           toggle
         </button>
       </div>
-      <Categories />
       <AllProducts products={products} />
     </main>
   )
