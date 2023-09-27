@@ -4,21 +4,24 @@ import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
 import { useAppcontext } from "@/context/state"
 import ToggleBtn from "./toggleBtn"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/router"
 
 function Navbar({}) {
   const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
   const { categories, isLogged, setIsLogged, darkMode, toggledarkMode } =
     useAppcontext()
+  const router = useRouter()
 
-  console.log("theme", theme)
   function handleMode() {
     console.log("handled", darkMode)
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
   }
-  function handleSearch(e) {
+  async function handleSearch(e) {
     e.preventDefault()
+    router.push(`/Search?query=${e.target[0].value}`)
+    e.target[0].value = ""
   }
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
@@ -56,7 +59,7 @@ function Navbar({}) {
                 id="searchBar"
                 name="searchBar"
                 placeholder="What's in your mind...?"
-                className="h-10 w-3/4 bg-[#EFF0F6] dark:bg-[#A0A3BD] rounded-l-full"
+                className="h-10 w-3/4 pl-12 bg-[#EFF0F6] dark:bg-[#A0A3BD] rounded-l-full"
               />
               <input
                 type="submit"
