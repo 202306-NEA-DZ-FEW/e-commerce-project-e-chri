@@ -13,7 +13,7 @@ export default function Home({ products, categories }) {
   }
   console.log("products", products)
   return (
-    <main className="bg-yellow-100 p-32 dark:bg-OxfordBlue ">
+    <main className="bg-yellow-100  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
         <button onClick={handleMode} className="bg-red-400">
           toggle
