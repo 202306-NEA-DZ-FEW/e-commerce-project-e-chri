@@ -2,10 +2,12 @@ import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
+import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
-  const { darkMode, toggledarkMode } = useAppcontext()
+  const { darkMode, toggledarkMode, isShoppingCartOpen } = useAppcontext()
+
   function handleMode() {
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
@@ -19,6 +21,7 @@ export default function Home({ products, categories }) {
         </button>
       </div>
       <AllProducts products={products} />
+      {isShoppingCartOpen && <ShoppingCart />}
     </main>
   )
 }
