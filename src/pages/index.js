@@ -7,11 +7,11 @@ export default function Home({ products }) {
   const { darkMode, toggledarkMode } = useAppcontext()
   function handleMode() {
     toggledarkMode()
-    darkMode ? setTheme("light") : setTheme("dark")
+    setTheme(darkMode ? "light" : "dark")
   }
-  console.log("products", products)
+  // console.log("products", products)
   return (
-    <main className="bg-yellow-100 p-32 dark:bg-OxfordBlue flex justify-center items-center">
+    <main className="bg-DarkWhite  text-black dark:text-white p-32 dark:bg-OxfordBlue flex justify-center items-center">
       <div className="w-20 h-20">
         <button onClick={handleMode} className="bg-red-400">
           toggle
@@ -22,7 +22,7 @@ export default function Home({ products }) {
 }
 
 export async function getServerSideProps() {
-  const url = "products"
+  const url = ""
   try {
     const products = await fetcher(url)
     return {
