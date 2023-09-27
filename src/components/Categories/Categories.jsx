@@ -1,7 +1,8 @@
 import React from "react"
 import Link from "next/link"
+import { categories } from "@/context/data"
 
-export default function Categories({ categories }) {
+export default function Categories({}) {
   return (
     <>
       <div>
