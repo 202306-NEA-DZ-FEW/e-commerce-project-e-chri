@@ -1,13 +1,16 @@
 import "@/styles/globals.css"
 import { ThemeProvider } from "next-themes"
 import { AppWrapper } from "@/context/state"
+import Navbar from "@/components/Navbar/Navbar"
 
 export default function App({ Component, pageProps }) {
-  // const {darkMode}= useAppcontext()
   return (
     <AppWrapper>
       <ThemeProvider enableSystem={true} attribute="class">
-        <Component {...pageProps} />
+        <div>
+          <Navbar />
+          <Component {...pageProps} />
+        </div>
       </ThemeProvider>
     </AppWrapper>
   )
