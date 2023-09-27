@@ -1,23 +1,33 @@
 import { createContext, useContext, useState } from "react"
-// import { useTheme } from "next-themes";
+import { categories } from "./data"
+import { useTheme } from "next-themes"
 
 const AppContext = createContext()
 
 export function AppWrapper({ children }) {
+  const { theme, setTheme } = useTheme()
   const [darkMode, setDarkMode] = useState(false)
-  // const {theme, setTheme}= useTheme()
+  const [isLogged, setIsLogged] = useState(false)
   function toggledarkMode() {
     console.log("darkmode", darkMode)
-    // setTheme('dark')
     setDarkMode(!darkMode)
   }
   return (
-    <AppContext.Provider value={{ darkMode, toggledarkMode }}>
+    <AppContext.Provider
+      value={{
+        darkMode,
+        toggledarkMode,
+        categories,
+        isLogged,
+        setIsLogged,
+        setTheme,
+        theme,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )
 }
 export function useAppcontext() {
-  // const {darkMode, toggledarkMode}= useContext(AppContext)
   return useContext(AppContext)
 }

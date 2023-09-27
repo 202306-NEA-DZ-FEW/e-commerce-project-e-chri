@@ -1,6 +1,6 @@
 import axios from "axios"
 export default async function fetcher(url) {
-  const base = "https://api.escuelajs.co/api/v1/"
+  const base = "https://dummyjson.com/products"
   const options = {
     headers: {
       accept: "application/json",
