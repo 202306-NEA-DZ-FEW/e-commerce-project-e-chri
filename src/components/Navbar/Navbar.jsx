@@ -5,6 +5,8 @@ import { useAppcontext } from "@/context/state"
 import ToggleBtn from "./toggleBtn"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/router"
+import { signOut } from "firebase/auth"
+import { auth } from "@/util/firebase"
 
 function Navbar({}) {
   const { theme, setTheme } = useTheme()
@@ -15,8 +17,7 @@ function Navbar({}) {
     setIsLogged,
     darkMode,
     toggledarkMode,
-    isShoppingCartOpen,
-    setIsShoppingCartOpen,
+    authChange,
   } = useAppcontext()
   const router = useRouter()
 
@@ -30,21 +31,29 @@ function Navbar({}) {
     router.push(`/Search?query=${e.target[0].value}`)
     e.target[0].value = ""
   }
+  function handleLogOut() {
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out successfully")
+        authChange()
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error)
+      })
+  }
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
-      <FiUser onClick={() => setIsLogged(!isLogged)} />
-      <FiShoppingCart
-        onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
-        className="text-lg font-semibold w-8 h-8"
-      />
+      <FiUser onClick={handleLogOut} />
+      <FiShoppingCart />
     </div>
   ) : (
-    <button
-      onClick={() => setIsLogged(!isLogged)}
+    <Link
+      // onClick={() => setIsLogged(!isLogged)}
+      href={"/login"}
       className="bg-RedPoppy text-white dark:text-white rounded-lg w-fit h-fit px-4 py-2 font-bold text-lg"
     >
       Login
-    </button>
+    </Link>
   )
   return (
     <nav className="bg-[#F7F7FC] dark:bg-[#4E4B66] w-full h-32 px-5 py-2 flex items-center">
@@ -56,7 +65,7 @@ function Navbar({}) {
           <Link href={"/"} className="w-1/5 px-4 py-2 text-3xl font-black">
             E-CHRI{" "}
           </Link>
-          <div className="flex flex-row items-center w-full px-4 relative">
+          <div className="flex flex-row items-center w-full px-4 relative bg-DarkWhite dark:bg-OxfordBlue">
             <form
               action=""
               onSubmit={handleSearch}
@@ -88,19 +97,13 @@ function Navbar({}) {
               <FiSearch />
             </button>
             {logBtn}
-
             <ToggleBtn toggle={handleMode} />
           </div>
         </div>
         <div className="w-full flex flex-row justify-around">
           {categories.map((cat) => (
             <span key={cat} className="text-base font-medium">
-              <Link
-                className="hover:border-b border-b-[#1E4445] hover:text-RedPoppy"
-                href={`./categories/${cat}`}
-              >
-                {cat}
-              </Link>
+              {cat}
             </span>
           ))}
         </div>
