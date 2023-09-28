@@ -9,8 +9,15 @@ import { useRouter } from "next/router"
 function Navbar({}) {
   const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
-  const { categories, isLogged, setIsLogged, darkMode, toggledarkMode } =
-    useAppcontext()
+  const {
+    categories,
+    isLogged,
+    setIsLogged,
+    darkMode,
+    toggledarkMode,
+    isShoppingCartOpen,
+    setIsShoppingCartOpen,
+  } = useAppcontext()
   const router = useRouter()
 
   function handleMode() {
@@ -26,7 +33,10 @@ function Navbar({}) {
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
       <FiUser onClick={() => setIsLogged(!isLogged)} />
-      <FiShoppingCart />
+      <FiShoppingCart
+        onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
+        className="text-lg font-semibold w-8 h-8"
+      />
     </div>
   ) : (
     <button
@@ -78,6 +88,7 @@ function Navbar({}) {
               <FiSearch />
             </button>
             {logBtn}
+
             <ToggleBtn toggle={handleMode} />
           </div>
         </div>
