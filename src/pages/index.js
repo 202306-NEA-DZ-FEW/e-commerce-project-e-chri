@@ -1,16 +1,27 @@
+import { useState, useEffect } from "react"
 import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
+import Filter from "@/components/Filter/Filter"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
   const { darkMode, toggledarkMode } = useAppcontext()
+  const [product, setProduct] = useState({ products })
+  // useEffect(()=>{
+  //   setProduct(products)
+  // },[])
+
   function handleMode() {
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
   }
-  // console.log("products", products)
+  function Update_product_state(value) {
+    setProduct(value)
+  }
+  console.log("products state", product)
+  console.log("products ", products)
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
@@ -18,7 +29,14 @@ export default function Home({ products, categories }) {
           toggle
         </button>
       </div>
-      <AllProducts products={products} />
+      <div className="flex flex-row">
+        <Filter
+          className=" fixed w-3"
+          products={product}
+          Update_product_state={Update_product_state}
+        />
+        <AllProducts products={product} />
+      </div>
     </main>
   )
 }
