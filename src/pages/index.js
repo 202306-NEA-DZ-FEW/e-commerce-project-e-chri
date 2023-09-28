@@ -12,7 +12,7 @@ export default function Home({ products, categories }) {
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
   }
-  // console.log("products", products)
+
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
