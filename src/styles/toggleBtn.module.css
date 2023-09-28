@@ -1,12 +1,12 @@
 .toggle {
-  background-color: #fff;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  background-color: #fcfcfc;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
   line-height: 1;
 }
 
