@@ -1,8 +1,6 @@
 import React from "react"
-import Link from "next/link"
 import fetcher from "@/util/API"
 import ProductCard from "@/components/ProductCard/ProductCard"
-import Button from "@/components/Button/Button"
 
 export default function Category({ productCategory }) {
   return (
@@ -20,7 +18,7 @@ export default function Category({ productCategory }) {
 
 export async function getServerSideProps(context) {
   const { category } = context.query
-  const url = `products/category/${category}`
+  const url = `/category/${category}`
   try {
     const productCategory = await fetcher(url)
     return {

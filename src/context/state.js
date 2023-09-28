@@ -8,6 +8,8 @@ export function AppWrapper({ children }) {
   const { theme, setTheme } = useTheme()
   const [darkMode, setDarkMode] = useState(false)
   const [isLogged, setIsLogged] = useState(false)
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false)
+
   function toggledarkMode() {
     console.log("darkmode", darkMode)
     setDarkMode(!darkMode)
@@ -22,6 +24,8 @@ export function AppWrapper({ children }) {
         setIsLogged,
         setTheme,
         theme,
+        isShoppingCartOpen,
+        setIsShoppingCartOpen,
       }}
     >
       {children}

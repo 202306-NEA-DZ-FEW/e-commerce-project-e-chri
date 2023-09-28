@@ -1,7 +1,5 @@
 import React from "react"
 import ProductCard from "../ProductCard/ProductCard"
-import Link from "next/link"
-import Button from "../Button/Button"
 
 export default function AllProducts({ products }) {
   return (

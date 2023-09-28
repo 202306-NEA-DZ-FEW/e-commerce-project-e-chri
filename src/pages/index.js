@@ -2,25 +2,26 @@ import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
-import Categories from "@/components/Categories/Categories"
+import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
-  const { darkMode, toggledarkMode } = useAppcontext()
+  const { darkMode, toggledarkMode, isShoppingCartOpen } = useAppcontext()
+
   function handleMode() {
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
   }
   // console.log("products", products)
   return (
-    <main className="bg-yellow-100  dark:bg-OxfordBlue ">
+    <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
         <button onClick={handleMode} className="bg-red-400">
           toggle
         </button>
       </div>
-      <Categories />
       <AllProducts products={products} />
+      {isShoppingCartOpen && <ShoppingCart />}
     </main>
   )
 }
