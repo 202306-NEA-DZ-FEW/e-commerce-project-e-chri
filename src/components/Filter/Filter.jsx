@@ -14,7 +14,7 @@ function valuetext(value) {
 
 function Filter({ products, Update_product_state }) {
   const [filter_product, set_filter_product] = useState()
-  const all_product = products.products
+  const all_product = products
   const suggestion_name = all_product.map((item) => {
     return item.title
   })
@@ -38,7 +38,7 @@ function Filter({ products, Update_product_state }) {
       )
 
     set_filter_product(new_products)
-    Update_product_state(filter_product)
+    Update_product_state(new_products)
     console.log("filter result", new_products)
     console.log("filter state ", filter_product)
   }
@@ -119,7 +119,7 @@ function Filter({ products, Update_product_state }) {
           name="half-rating"
           defaultValue={0}
           precision={0.1}
-          value={rating_value}
+          value={rating_value || 0}
           onChange={rating_handleChange}
         />
       </div>

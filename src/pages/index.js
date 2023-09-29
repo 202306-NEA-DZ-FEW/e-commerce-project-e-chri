@@ -2,9 +2,11 @@ import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
+import { useState } from "react"
 
-export default function Home(props) {
+export default function Home({ products }) {
   const { theme, setTheme } = useTheme()
+  const [all_products, setAllProducts] = useState(products.products)
   // const { darkMode, toggledarkMode } = useAppcontext()
 
   // // useEffect(()=>{
@@ -16,14 +18,17 @@ export default function Home(props) {
   //   setTheme(darkMode ? "light" : "dark")
   // }
 
-  console.log("index page products ", props.products)
+  console.log("index page products ", all_products)
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
         <button className="bg-red-400">toggle</button>
       </div>
 
-      <AllProducts products={props.products}></AllProducts>
+      <AllProducts
+        products={all_products}
+        setProducts={setAllProducts}
+      ></AllProducts>
     </main>
   )
 }
