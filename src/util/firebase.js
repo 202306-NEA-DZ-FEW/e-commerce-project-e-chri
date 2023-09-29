@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app"
 import { getAuth } from "firebase/auth"
 import {
-  getFirestore,
+  addDoc,
   collection,
+  getFirestore,
   doc,
-  setDoc,
-  updateDoc,
+  getDoc,
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -22,15 +22,25 @@ const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 
 // Initialize Firestore
-export const firestore = getFirestore(app)
+export const db = getFirestore(app)
 
-// Define Firestore collections and documents where you want to store cart data
-const userCartCollection = collection(firestore, "user_carts")
+const userCartCollection = collection(db, "user_carts")
 
-export async function updateUserCart(userId, cartData) {
-  // Define the document for the user's cart
+export async function updateFirestoreCart(updatedCart) {
+  await addDoc(userCartCollection, {
+    products: updatedCart,
+    userId: auth?.currentUser?.uid,
+  })
+  console.log("Cart data updated in Firestore.")
+}
+
+export async function fetchUserCart(userId) {
   const userCartDoc = doc(userCartCollection, userId)
 
-  await setDoc(userCartDoc, cartData, { merge: true })
-  console.log("User's cart data updated successfully.")
+  const userCartSnapshot = await getDoc(userCartDoc)
+
+  if (userCartSnapshot.exists()) {
+    return { ...userCartSnapshot.data(), id: userCartSnapshot.id }
+  }
+  return { products: [] }
 }

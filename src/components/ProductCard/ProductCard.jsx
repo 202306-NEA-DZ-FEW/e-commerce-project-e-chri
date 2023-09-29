@@ -1,8 +1,11 @@
 import React from "react"
 import { useAppcontext } from "@/context/state"
+import { fetchUserCart } from "@/util/firebase"
+import { auth } from "@/util/firebase"
+import { updateFirestoreCart } from "@/util/firebase"
 
 export default function ProductCard({ title, price, thumbnail, brand, id }) {
-  const { addToCart } = useAppcontext()
+  const { addToCart, isLogged } = useAppcontext()
 
   const product = {
     title,
@@ -13,8 +16,19 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
     quantity: 1,
   }
 
-  const handleAddToCart = () => {
-    addToCart(product)
+  const handleAddToCart = async () => {
+    if (isLogged) {
+      addToCart(product)
+
+      // Fetch the user's cart data
+      const userId = auth?.currentUser?.uid
+      const userCartData = await fetchUserCart(userId)
+
+      // Update the user's cart in Firestore
+      updateFirestoreCart(userId, userCartData)
+    } else {
+      alert("Log in")
+    }
   }
 
   return (

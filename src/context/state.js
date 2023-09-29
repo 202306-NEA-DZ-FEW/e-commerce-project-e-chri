@@ -3,6 +3,7 @@ import { categories } from "./data"
 import { useTheme } from "next-themes"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "@/util/firebase"
+import { updateFirestoreCart } from "@/util/firebase"
 
 const AppContext = createContext()
 
@@ -35,11 +36,13 @@ export function AppWrapper({ children }) {
   }
   function addToCart(product) {
     setCart([...cart, product])
+    updateFirestoreCart([...cart, product])
   }
 
   function removeFromCart(productId) {
     const updatedCart = cart.filter((product) => product.id !== productId)
     setCart(updatedCart)
+    updateFirestoreCart(updatedCart)
   }
 
   function clearCart() {

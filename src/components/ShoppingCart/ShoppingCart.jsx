@@ -1,13 +1,22 @@
 import { Fragment, useState } from "react"
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
 import { useAppcontext } from "@/context/state"
+import { updateFirestoreCart } from "@/util/firebase"
+import { auth } from "@/util/firebase"
+import { fetchUserCart } from "@/util/firebase"
 
 export default function ShoppingCart() {
   const [open, setOpen] = useState(true)
   const { cart, removeFromCart } = useAppcontext()
 
-  const handleRemove = (productId) => {
+  const handleRemove = async (productId) => {
     removeFromCart(productId)
+    // Fetch the user's cart data
+    const userId = auth?.currentUser?.uid
+    const userCartData = await fetchUserCart(userId)
+
+    // Update the user's cart in Firestore
+    updateFirestoreCart(userId, userCartData)
   }
 
   return (
@@ -77,7 +86,7 @@ export default function ShoppingCart() {
 
                         <div className="flex">
                           <button
-                            onClick={handleRemove}
+                            onClick={() => handleRemove(product.id)}
                             type="button"
                             className="font-medium font-poppins text-RedPoppy hover:text-OxfordBlue"
                           >
