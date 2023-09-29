@@ -12,6 +12,7 @@ export function AppWrapper({ children }) {
   const [isLogged, setIsLogged] = useState(false)
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false)
   const [user, setUser] = useState({})
+  const [cart, setCart] = useState([])
 
   function authChange() {
     onAuthStateChanged(auth, (logUser) => {
@@ -32,6 +33,18 @@ export function AppWrapper({ children }) {
     console.log("darkmode", darkMode)
     setDarkMode(!darkMode)
   }
+  function addToCart(product) {
+    setCart([...cart, product])
+  }
+
+  function removeFromCart(productId) {
+    const updatedCart = cart.filter((product) => product.id !== productId)
+    setCart(updatedCart)
+  }
+
+  function clearCart() {
+    setCart([])
+  }
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +60,10 @@ export function AppWrapper({ children }) {
         user,
         setUser,
         authChange,
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
       }}
     >
       {children}

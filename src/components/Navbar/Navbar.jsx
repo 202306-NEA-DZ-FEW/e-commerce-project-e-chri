@@ -18,6 +18,8 @@ function Navbar({}) {
     darkMode,
     toggledarkMode,
     authChange,
+    isShoppingCartOpen,
+    setIsShoppingCartOpen,
   } = useAppcontext()
   const router = useRouter()
 
@@ -43,8 +45,11 @@ function Navbar({}) {
   }
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
-      <FiUser onClick={handleLogOut} />
-      <FiShoppingCart />
+      <FiUser onClick={() => setIsLogged(!isLogged)} />
+      <FiShoppingCart
+        onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
+        className="text-lg font-semibold w-8 h-8"
+      />
     </div>
   ) : (
     <Link

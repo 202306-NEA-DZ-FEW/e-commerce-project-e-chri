@@ -1,16 +1,35 @@
 import React from "react"
+import { useAppcontext } from "@/context/state"
 
-export default function ProductCard({ title, price, images }) {
+export default function ProductCard({ title, price, thumbnail, brand, id }) {
+  const { addToCart } = useAppcontext()
+
+  const product = {
+    title,
+    brand,
+    price,
+    thumbnail,
+    id,
+    quantity: 1,
+  }
+
+  const handleAddToCart = () => {
+    addToCart(product)
+  }
+
   return (
     <div class="w-72 p-4 bg-DarkWhite rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out">
-      <img class="w-full h-40  rounded-t-lg" src={images[0]} alt={title} />
+      <img class="w-full h-40  rounded-t-lg" src={thumbnail} alt={title} />
       <div class="p-4">
         <h2 class="text-ml font-poppins dark:text-black font-semibold">
           {title}
         </h2>
         <p class="text-[#DB4444] font-semibold">${price}</p>
         <div class="flex justify-between items-center mt-4">
-          <button class="bg-RedPoppy hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <button
+            onClick={handleAddToCart}
+            class="bg-RedPoppy hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
             Add To Cart
           </button>
           <button
