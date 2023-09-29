@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo, useCallback } from "react"
 import TuneIcon from "@mui/icons-material/Tune"
 import TextField from "@mui/material/TextField"
 import Autocomplete from "@mui/material/Autocomplete"
@@ -12,8 +12,9 @@ function valuetext(value) {
   return `${value}$`
 }
 
-function Filter(props) {
-  const all_product = props.products.products
+function Filter({ products, Update_product_state }) {
+  const [filter_product, set_filter_product] = useState()
+  const all_product = products.products
   const suggestion_name = all_product.map((item) => {
     return item.title
   })
@@ -29,19 +30,22 @@ function Filter(props) {
     price = undefined,
   ) => {
     const new_products = all_product
-      .filter((product) => product.category in category)
-      .filter((product) => product.name === name)
+      //   .filter((product) => product.category in category)
+      //   .filter((product) => product.name === name)
       .filter((product) => product.rating >= rating)
       .filter(
         (product) => product.price >= price[0] || product.price <= price[1],
       )
 
-    props.Update_product_state(new_products)
+    set_filter_product(new_products)
+    Update_product_state(filter_product)
+    console.log("filter result", new_products)
+    console.log("filter state ", filter_product)
   }
 
   const [price_value, set_price_Value] = useState([0, 1000])
   const [rating_value, set_rating_Value] = useState()
-  const [search_value, set_search_value] = useState(undefined)
+  const [search_value, set_search_value] = useState()
   const [category_value, set_category_Value] = useState([...suggestion_name])
 
   useEffect(() => {
@@ -113,7 +117,7 @@ function Filter(props) {
         <strong>rating</strong>
         <Rating
           name="half-rating"
-          defaultValue={2.5}
+          defaultValue={0}
           precision={0.1}
           value={rating_value}
           onChange={rating_handleChange}

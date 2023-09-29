@@ -1,42 +1,29 @@
-import { useState, useEffect } from "react"
 import fetcher from "@/util/API"
 import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
-import Filter from "@/components/Filter/Filter"
 
-export default function Home({ products, categories }) {
+export default function Home(props) {
   const { theme, setTheme } = useTheme()
-  const { darkMode, toggledarkMode } = useAppcontext()
-  const [product, setProduct] = useState({ products })
-  // useEffect(()=>{
-  //   setProduct(products)
-  // },[])
+  // const { darkMode, toggledarkMode } = useAppcontext()
 
-  function handleMode() {
-    toggledarkMode()
-    setTheme(darkMode ? "light" : "dark")
-  }
-  function Update_product_state(value) {
-    setProduct(value)
-  }
-  console.log("products state", product)
-  console.log("products ", products)
+  // // useEffect(()=>{
+  // //   setProduct(products)
+  // // },[product])
+
+  // function handleMode() {
+  //   toggledarkMode()
+  //   setTheme(darkMode ? "light" : "dark")
+  // }
+
+  console.log("index page products ", props.products)
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
       <div className="w-20 h-20 ">
-        <button onClick={handleMode} className="bg-red-400">
-          toggle
-        </button>
+        <button className="bg-red-400">toggle</button>
       </div>
-      <div className="flex flex-row">
-        <Filter
-          className=" fixed w-3"
-          products={product}
-          Update_product_state={Update_product_state}
-        />
-        <AllProducts products={product} />
-      </div>
+
+      <AllProducts products={props.products}></AllProducts>
     </main>
   )
 }
