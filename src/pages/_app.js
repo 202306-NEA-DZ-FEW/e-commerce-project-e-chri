@@ -6,12 +6,12 @@ import Navbar from "@/components/Navbar/Navbar"
 export default function App({ Component, pageProps }) {
   return (
     <AppWrapper>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <div>
-          <Navbar />
-          <Component {...pageProps} />
-        </div>
-      </ThemeProvider>
+      {/* <ThemeProvider enableSystem={true} attribute="class"> */}
+      <div>
+        <Navbar />
+        <Component {...pageProps} />
+      </div>
+      {/* </ThemeProvider> */}
     </AppWrapper>
   )
 }

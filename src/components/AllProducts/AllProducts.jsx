@@ -1,16 +1,71 @@
 import React from "react"
 import ProductCard from "../ProductCard/ProductCard"
+import { useState } from "react"
+import { HiArrowRight, HiArrowLeft } from "react-icons/hi"
 
 export default function AllProducts({ products }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const productsPerPage = 8
+
+  // Calculate the index range for the current page
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = products.products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  )
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(products.products.length / productsPerPage)
+
+  // Create an array of page numbers
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1,
+  )
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="font-bold text-2xl ml-20">Explore Our Products</h1>
+      <h1 className="font-bold text-3xl font-poppins ml-20">
+        Explore Our Products
+      </h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-2 gap-y-8 m-20">
-        {products.products.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product.id}>
             <ProductCard {...product} />
           </div>
         ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mr-2 bg-gray-200 rounded-full hover:bg-gray-300"
+        >
+          <HiArrowLeft />
+        </button>
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            onClick={() => setCurrentPage(pageNumber)}
+            className={`px-4 py-2 mx-2 rounded-full ${
+              currentPage === pageNumber
+                ? "bg-RedPoppy text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={indexOfLastProduct >= products.length}
+          className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300"
+        >
+          <HiArrowRight />
+        </button>
       </div>
     </div>
   )
