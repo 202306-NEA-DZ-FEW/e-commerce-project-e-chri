@@ -6,14 +6,14 @@ export default function ShoppingCart() {
   const [open, setOpen] = useState(true)
   const { cart, removeFromCart } = useAppcontext()
 
+  const calculateTotal = () => {
+    return cart.reduce((total, product) => {
+      return total + product.price * product.quantity
+    }, 0)
+  }
+
   const handleRemove = async (productId) => {
     removeFromCart(productId)
-    // // Fetch the user's cart data
-    // const userId = auth?.currentUser?.uid
-    // const userCartData = await fetchUserCart(userId)
-
-    // // Update the user's cart in Firestore
-    // updateFirestoreCart(userId, userCartData)
   }
 
   return (
@@ -72,7 +72,7 @@ export default function ShoppingCart() {
                       <div>
                         <div className="dark:text-DarkWhite flex justify-between text-base font-medium text-gray-900">
                           <h3>{product.title}</h3>
-                          <p className="ml-4">{product.price}</p>
+                          <p className="ml-4">${product.price}</p>
                         </div>
                         <p className="mt-1 text-sm text-#313048">
                           {product.brand}
@@ -102,7 +102,7 @@ export default function ShoppingCart() {
         <div className="border-t border-#313048 px-4 py-6">
           <div className="dark:text-DarkWhite flex justify-between text-base font-poppins text-#313048-900">
             <p>Total</p>
-            <p>4545</p>
+            <p>${calculateTotal().toFixed(2)}</p>
           </div>
           <p className="mt-0.5 text-sm text-#313048 font-opensans">
             Services fees and taxes calculated: 0000
