@@ -3,23 +3,17 @@ import { useAppcontext } from "@/context/state"
 import { useTheme } from "next-themes"
 import AllProducts from "@/components/AllProducts/AllProducts"
 import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
+import { useEffect } from "react"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
   const { darkMode, toggledarkMode, isShoppingCartOpen } = useAppcontext()
-
-  function handleMode() {
-    toggledarkMode()
+  useEffect(() => {
     setTheme(darkMode ? "light" : "dark")
-  }
+  }, [darkMode])
 
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
-      <div className="w-20 h-20 ">
-        <button onClick={handleMode} className="bg-red-400">
-          toggle
-        </button>
-      </div>
       <AllProducts products={products} />
       {isShoppingCartOpen && <ShoppingCart />}
     </main>

@@ -1,5 +1,5 @@
 .toggle {
-  background-color: #fcfcfc;
+  /* background-color: #fcfcfc; */
   width: 45px;
   height: 45px;
   border-radius: 8px;
@@ -21,19 +21,19 @@
   transition: transform 500ms;
 }
 
-.icon--moon {
+.iconMoon {
   transition-delay: 200ms;
 }
 
-.icon--sun {
+.iconSun {
   transform: scale(0);
 }
 
-#switch:checked + .icon--moon {
+.checked {
   transform: rotate(360deg) scale(0);
 }
 
-#switch:checked ~ .icon--sun {
+.checked ~ .iconSun {
   transition-delay: 200ms;
   transform: scale(1) rotate(360deg);
 }
