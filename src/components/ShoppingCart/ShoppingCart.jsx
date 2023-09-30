@@ -1,41 +1,20 @@
 import { Fragment, useState } from "react"
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
-
-const products = [
-  {
-    id: 1,
-    title: "Item 1",
-    description: "",
-    price: "9999",
-    quantity: 1,
-    images: "",
-    category: {
-      id: 1,
-      name: "Clothe",
-      image: "https://picsum.photos/640/640?r=1389",
-      creationAt: "2023-09-27T14:46:55.000Z",
-      updatedAt: "2023-09-27T15:16:05.000Z",
-    },
-  },
-  {
-    id: 2,
-    title: "Item 2",
-    description: "",
-    price: "88888",
-    quantity: 2,
-    images: "",
-    category: {
-      id: 1,
-      name: "Clothe",
-      image: "https://picsum.photos/640/640?r=13sd89",
-      creationAt: "2023-09-27T14:46:55.000Z",
-      updatedAt: "2023-09-27T15:16:05.000Z",
-    },
-  },
-]
+import { useAppcontext } from "@/context/state"
 
 export default function ShoppingCart() {
   const [open, setOpen] = useState(true)
+  const { cart, removeFromCart } = useAppcontext()
+
+  const calculateTotal = () => {
+    return cart.reduce((total, product) => {
+      return total + product.price * product.quantity
+    }, 0)
+  }
+
+  const handleRemove = async (productId) => {
+    removeFromCart(productId)
+  }
 
   return (
     <div
@@ -79,11 +58,11 @@ export default function ShoppingCart() {
           <div className="mt-8">
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">
-                {products.map((product) => (
+                {cart.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <image
-                        src={product.images}
+                        src={product.thumbnail}
                         alt={product.title}
                         className="h-full w-full object-cover object-center"
                       />
@@ -93,10 +72,10 @@ export default function ShoppingCart() {
                       <div>
                         <div className="dark:text-DarkWhite flex justify-between text-base font-medium text-gray-900">
                           <h3>{product.title}</h3>
-                          <p className="ml-4">{product.price}</p>
+                          <p className="ml-4">${product.price}</p>
                         </div>
                         <p className="mt-1 text-sm text-#313048">
-                          {product.category.name}
+                          {product.brand}
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
@@ -104,6 +83,7 @@ export default function ShoppingCart() {
 
                         <div className="flex">
                           <button
+                            onClick={() => handleRemove(product.id)}
                             type="button"
                             className="font-medium font-poppins text-RedPoppy hover:text-OxfordBlue"
                           >
@@ -122,7 +102,7 @@ export default function ShoppingCart() {
         <div className="border-t border-#313048 px-4 py-6">
           <div className="dark:text-DarkWhite flex justify-between text-base font-poppins text-#313048-900">
             <p>Total</p>
-            <p>4545</p>
+            <p>${calculateTotal().toFixed(2)}</p>
           </div>
           <p className="mt-0.5 text-sm text-#313048 font-opensans">
             Services fees and taxes calculated: 0000

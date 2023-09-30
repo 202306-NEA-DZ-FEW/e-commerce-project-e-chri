@@ -1,7 +1,38 @@
 import Link from "next/link"
 import React from "react"
+import { useAppcontext } from "@/context/state"
+import { fetchUserCart } from "@/util/firebase"
+import { auth } from "@/util/firebase"
+import { updateFirestoreCart } from "@/util/firebase"
 
-export default function ProductCard({ title, price, thumbnail, id }) {
+export default function ProductCard({ title, price, thumbnail, brand, id }) {
+  const { addToCart, isLogged } = useAppcontext()
+
+  const product = {
+    title,
+    brand,
+    price,
+    thumbnail,
+    id,
+    quantity: 1,
+  }
+
+  const handleAddToCart = async () => {
+    if (isLogged) {
+      // fetchUserCart(userId)
+      // Fetch the user's cart data
+      const userId = auth?.currentUser?.uid
+      const userCartData = await fetchUserCart(userId)
+      console.log("the fetch result", userCartData)
+      // Update the user's cart in Firestore
+      updateFirestoreCart(userId, userCartData)
+      addToCart(product)
+    } else {
+      alert("Log in")
+    }
+  }
+
+
   return (
     <div class="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
       <div className="relative">
@@ -42,7 +73,10 @@ export default function ProductCard({ title, price, thumbnail, id }) {
         </h2>
         <p class="text-[#DB4444] font-semibold">${price}</p>
         <div class="flex justify-between items-center mt-4">
-          <button class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+          <button  onClick={handleAddToCart}
+          class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+
             Add To Cart
           </button>
         </div>
