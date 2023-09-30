@@ -1,15 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "../../styles/toggleBtn.module.css"
+import { useAppcontext } from "@/context/state"
 
-export default function ToggleButton({ toggle }) {
+export default function ToggleButton({}) {
+  const [isChecked, setIsChecked] = useState(false)
+  const { toggledarkMode } = useAppcontext()
+  function handleToggle() {
+    // toggle()
+    toggledarkMode()
+    setIsChecked(!isChecked)
+  }
   return (
-    <div className="" onClick={toggle}>
+    <div className="bg-DarkWhite dark:bg-EnglishViolet" onClick={handleToggle}>
       <label className={styles.toggle} htmlFor="switch">
-        <input id="switch" className={styles.input} type="checkbox" />
-        <div className={styles.icon + " " + styles["icon--moon"]}>
+        {/* <input id="switch" className={styles.input} type="checkbox" /> */}
+        <div
+          className={
+            isChecked
+              ? styles.icon + " " + styles.iconMoon
+              : styles.icon + " " + styles.iconMoon + " " + styles.checked
+          }
+        >
           <svg
-            height="15"
-            width="15"
+            height="20"
+            width="20"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,10 +36,16 @@ export default function ToggleButton({ toggle }) {
           </svg>
         </div>
 
-        <div className={styles.icon + " " + styles["icon--sun"]}>
+        <div
+          className={
+            isChecked
+              ? styles.icon + " " + styles.iconSun + " " + styles.checked
+              : styles.icon + " " + styles.iconSun
+          }
+        >
           <svg
-            height="15"
-            width="15"
+            height="20"
+            width="20"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

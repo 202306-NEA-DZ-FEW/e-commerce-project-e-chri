@@ -3,23 +3,23 @@ import React from "react"
 
 export default function ProductCard({ title, price, thumbnail, id }) {
   return (
-    <div class="w-72 p-4 bg-DarkWhite rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out">
-      <img class="w-full h-40  rounded-t-lg" src={thumbnail} alt={title} />
-      <div class="p-4">
-        <h2 class="text-ml font-poppins dark:text-black font-semibold">
-          {title}
-        </h2>
-        <p class="text-[#DB4444] font-semibold">${price}</p>
-        <div class="flex justify-between items-center mt-4">
-          <button class="bg-RedPoppy hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-            Add To Cart
-          </button>
-          <Link href={`../products/${id}`}>
-            <button
+    <div class="w-64 h-80 p-4 bg-DarkWhite rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+      <div className="relative">
+        <img
+          class="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
+          src={thumbnail}
+          alt={title}
+        />
+        <Link
+          href={`../products/${id}`}
+          className="overflow-hidden absolute text-xl font-semibold flex justify-center items-center left-0 top-0 w-0 h-0 bg-[rgba(255,255,255,.1)] backdrop-blur-sm backdrop-filter bg-opacity-50 text-center  text-RedPoppy group-hover:w-full group-hover:h-full"
+        >
+          {/* <button
               title="Add New"
-              class="group cursor-pointer hover:rotate-90 active:scale-100 duration-200"
-            >
-              <svg
+              class="group cursor-pointer active:scale-100 duration-200"
+            > */}
+          View more!
+          {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30px"
                 height="50px"
@@ -32,9 +32,19 @@ export default function ProductCard({ title, price, thumbnail, id }) {
                 ></path>
                 <path d="M8 12H16" stroke-width="1.5"></path>
                 <path d="M12 16V8" stroke-width="1.5"></path>
-              </svg>
-            </button>
-          </Link>
+              </svg> */}
+          {/* </button> */}
+        </Link>
+      </div>
+      <div class="p-4">
+        <h2 class="text-ml font-poppins dark:text-black font-semibold">
+          {title}
+        </h2>
+        <p class="text-[#DB4444] font-semibold">${price}</p>
+        <div class="flex justify-between items-center mt-4">
+          <button class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

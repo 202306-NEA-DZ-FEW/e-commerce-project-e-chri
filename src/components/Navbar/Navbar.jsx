@@ -24,9 +24,7 @@ function Navbar({}) {
   const router = useRouter()
 
   function handleMode() {
-    console.log("handled", darkMode)
     toggledarkMode()
-    setTheme(darkMode ? "light" : "dark")
   }
   async function handleSearch(e) {
     e.preventDefault()
@@ -70,7 +68,7 @@ function Navbar({}) {
           <Link href={"/"} className="w-1/5 px-4 py-2 text-3xl font-black">
             E-CHRI{" "}
           </Link>
-          <div className="flex flex-row items-center w-full px-4 relative bg-DarkWhite dark:bg-OxfordBlue">
+          <div className="flex flex-row items-center w-full px-4 relative ">
             <form
               action=""
               onSubmit={handleSearch}
@@ -83,7 +81,8 @@ function Navbar({}) {
                 id="searchBar"
                 name="searchBar"
                 placeholder="What's in your mind...?"
-                className="h-10 w-3/4 pl-12 bg-[#EFF0F6] dark:bg-[#A0A3BD] rounded-l-full"
+                className={`${wideBar ? "" : "hidden"} 
+                h-10 w-3/4 pl-12 bg-[#EFF0F6] dark:bg-[#A0A3BD] dark:text-DarkWhite rounded-l-full dark:placeholder:text-DarkWhite`}
               />
               <input
                 type="submit"

@@ -10,7 +10,7 @@ function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-EnglishViolet flex items-center justify-center">
+    <div className="min-h-screen bg-DarkWhite dark:bg-EnglishViolet flex items-center justify-center">
       <div className="bg-OxfordBlue p-8 rounded-lg shadow-md w-full max-w-xl">
         {" "}
         {/* Increase the width */}

@@ -7,9 +7,12 @@ export default function App({ Component, pageProps }) {
   return (
     <AppWrapper>
       <ThemeProvider enableSystem={true} attribute="class">
-        <div>
+        <div className="bg-DarkWhite dark:bg-OxfordBlue">
           <Navbar />
-          <Component {...pageProps} />
+          <Component
+            {...pageProps}
+            className="bg-DarkWhite dark:bg-OxfordBlue"
+          />
         </div>
       </ThemeProvider>
     </AppWrapper>

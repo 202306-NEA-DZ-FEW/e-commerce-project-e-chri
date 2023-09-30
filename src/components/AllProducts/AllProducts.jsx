@@ -42,7 +42,7 @@ export default function AllProducts({ products }) {
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-4 py-2 mr-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          className="px-4 py-2 mr-2 bg-RedPoppy text-white rounded-full hover:bg-gray-300"
         >
           <HiArrowLeft />
         </button>
@@ -50,10 +50,10 @@ export default function AllProducts({ products }) {
           <button
             key={pageNumber}
             onClick={() => setCurrentPage(pageNumber)}
-            className={`px-4 py-2 mx-2 rounded-full ${
+            className={`px-4 py-2 mx-2 rounded-full  ${
               currentPage === pageNumber
                 ? "bg-RedPoppy text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                : "bg-white dark:bg-EnglishViolet text-EnglishViolet dark:text-white shadow hover:bg-gray-300"
             }`}
           >
             {pageNumber}
@@ -62,7 +62,7 @@ export default function AllProducts({ products }) {
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={indexOfLastProduct >= products.length}
-          className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          className="px-4 py-2 rounded-full bg-RedPoppy text-white hover:bg-gray-300"
         >
           <HiArrowRight />
         </button>
