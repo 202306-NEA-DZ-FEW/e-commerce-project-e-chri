@@ -10,3 +10,12 @@ body {
 .dark body {
   background-color: #4e4b66; /* Couleur de fond pour le thème sombre */
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

@@ -29,7 +29,7 @@ export default function ShoppingCart() {
               {" "}
               <FiShoppingCart />{" "}
             </h3>
-            <h3 className="dark:text-DarkWhite text-lg font-poppins text-gray-900 font-poppins">
+            <h3 className="dark:text-DarkWhite text-lg  text-gray-900 font-poppins">
               {" "}
               My Shopping Cart{" "}
             </h3>

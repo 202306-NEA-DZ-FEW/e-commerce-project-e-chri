@@ -26,9 +26,10 @@ function Search() {
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4"
           >
             <ProductCard
-              title={product.title}
-              price={product.price}
-              images={product.images}
+              // title={product.title}
+              // price={product.price}
+              // images={product.images}
+              {...product}
             />
           </div>
         ))}

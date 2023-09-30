@@ -8,32 +8,22 @@ function Login() {
   const handleTabChange = (tab) => {
     setActiveTab(tab)
   }
+
   return (
-    <>
-      <div className="flex justify-center">
-        <button
-          className={`px-4 py-2 ${
-            activeTab === "login" ? "bg-blue-500" : "bg-gray-200"
-          } mr-2 rounded-tl-md rounded-bl-md`}
-          onClick={() => handleTabChange("login")}
-        >
-          Login
-        </button>
-        <button
-          className={`px-4 py-2 ${
-            activeTab === "register" ? "bg-blue-500" : "bg-gray-200"
-          } rounded-tr-md rounded-br-md`}
-          onClick={() => handleTabChange("register")}
-        >
-          Register
-        </button>
+    <div className="min-h-screen bg-DarkWhite dark:bg-EnglishViolet flex items-center justify-center">
+      <div className="bg-OxfordBlue p-8 rounded-lg shadow-md w-full max-w-xl">
+        {" "}
+        {/* Increase the width */}
+        <h2 className="text-DarkWhite text-2xl font-Poppins text-center mb-6">
+          Welcome !
+        </h2>
+        {activeTab === "login" ? (
+          <LoginForm tab={setActiveTab} />
+        ) : (
+          <RegistrationForm tab={setActiveTab} />
+        )}
       </div>
-      {activeTab === "login" ? (
-        <LoginForm tab={setActiveTab} />
-      ) : (
-        <RegistrationForm tab={setActiveTab} />
-      )}
-    </>
+    </div>
   )
 }
 
