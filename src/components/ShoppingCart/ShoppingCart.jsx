@@ -1,9 +1,6 @@
 import { Fragment, useState } from "react"
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
 import { useAppcontext } from "@/context/state"
-import { updateFirestoreCart } from "@/util/firebase"
-import { auth } from "@/util/firebase"
-import { fetchUserCart } from "@/util/firebase"
 
 export default function ShoppingCart() {
   const [open, setOpen] = useState(true)
@@ -11,12 +8,12 @@ export default function ShoppingCart() {
 
   const handleRemove = async (productId) => {
     removeFromCart(productId)
-    // Fetch the user's cart data
-    const userId = auth?.currentUser?.uid
-    const userCartData = await fetchUserCart(userId)
+    // // Fetch the user's cart data
+    // const userId = auth?.currentUser?.uid
+    // const userCartData = await fetchUserCart(userId)
 
-    // Update the user's cart in Firestore
-    updateFirestoreCart(userId, userCartData)
+    // // Update the user's cart in Firestore
+    // updateFirestoreCart(userId, userCartData)
   }
 
   return (

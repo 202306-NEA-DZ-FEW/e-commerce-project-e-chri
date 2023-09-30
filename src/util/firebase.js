@@ -6,6 +6,7 @@ import {
   getFirestore,
   doc,
   getDoc,
+  setDoc,
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -27,10 +28,11 @@ export const db = getFirestore(app)
 const userCartCollection = collection(db, "user_carts")
 
 export async function updateFirestoreCart(updatedCart) {
-  await addDoc(userCartCollection, {
-    products: updatedCart,
-    userId: auth?.currentUser?.uid,
-  })
+  const userId = auth?.currentUser?.uid
+  const userCartDoc = doc(userCartCollection, userId)
+
+  // Use setDoc to update the existing document or create a new one
+  await setDoc(userCartDoc, { products: updatedCart }, { merge: true })
   console.log("Cart data updated in Firestore.")
 }
 
@@ -38,7 +40,7 @@ export async function fetchUserCart(userId) {
   const userCartDoc = doc(userCartCollection, userId)
 
   const userCartSnapshot = await getDoc(userCartDoc)
-
+  console.log("firestore", userCartSnapshot)
   if (userCartSnapshot.exists()) {
     return { ...userCartSnapshot.data(), id: userCartSnapshot.id }
   }

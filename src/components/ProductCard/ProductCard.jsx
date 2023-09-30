@@ -18,14 +18,15 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
 
   const handleAddToCart = async () => {
     if (isLogged) {
-      addToCart(product)
-
-      // Fetch the user's cart data
       const userId = auth?.currentUser?.uid
-      const userCartData = await fetchUserCart(userId)
+      addToCart(product)
+      fetchUserCart(userId)
+      // // Fetch the user's cart data
 
-      // Update the user's cart in Firestore
-      updateFirestoreCart(userId, userCartData)
+      // const userCartData = await fetchUserCart(userId)
+      // console.log("the fetch result", userCartData)
+      // // Update the user's cart in Firestore
+      // updateFirestoreCart(userId, userCartData)
     } else {
       alert("Log in")
     }
