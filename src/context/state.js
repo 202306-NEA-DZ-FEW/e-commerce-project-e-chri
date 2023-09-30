@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react"
 import { categories } from "./data"
 import { useTheme } from "next-themes"
 import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "@/util/firebase"
+import { auth, fetchUserCart } from "@/util/firebase"
 import { updateFirestoreCart } from "@/util/firebase"
 
 const AppContext = createContext()
@@ -15,17 +15,22 @@ export function AppWrapper({ children }) {
   const [user, setUser] = useState({})
   const [cart, setCart] = useState([])
 
-  function authChange() {
+  async function authChange() {
     onAuthStateChanged(auth, (logUser) => {
       if (logUser) {
         setUser(logUser)
         setIsLogged(true)
         const displayName = logUser.displayName
+        fetchUserCart(logUser.uid).then((data) => setCart(data.products))
+        // setCart(cartItems)
+        // console.log('cart ',cartItems)
         console.log("User is logged in as:", displayName)
       } else {
         console.log("User is not logged in")
         setUser({})
         setIsLogged(false)
+        clearCart()
+        console.log("log out", cart)
       }
     })
   }

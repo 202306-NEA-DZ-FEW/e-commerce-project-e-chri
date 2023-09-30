@@ -45,7 +45,7 @@ function Navbar({}) {
   }
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
-      <FiUser onClick={() => setIsLogged(!isLogged)} />
+      <FiUser onClick={handleLogOut} />
       <FiShoppingCart
         onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
         className="text-lg font-semibold w-8 h-8"
