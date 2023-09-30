@@ -3,7 +3,7 @@ import React from "react"
 
 export default function ProductCard({ title, price, thumbnail, id }) {
   return (
-    <div class="w-64 h-80 p-4 bg-DarkWhite rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+    <div class="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
       <div className="relative">
         <img
           class="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
