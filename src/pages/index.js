@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import Link from "next/link"
 import ProductSlider from "@/components/ProductSlider/ProductSlider"
 import Categories from "@/context/data"
+import Services from "@/components/Services/Services"
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
@@ -43,6 +44,7 @@ export default function Home({ products, categories }) {
         />
       </div>
       {isShoppingCartOpen && <ShoppingCart />}
+      <Services />
     </main>
   )
 }
