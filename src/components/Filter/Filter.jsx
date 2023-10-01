@@ -64,7 +64,7 @@ function Filter({
 
   //   const { products, setProducts } = useAppcontext()
 
-  console.log("filter component", products)
+  // console.log("filter component", products)
   const suggestion_name = products.map((item) => {
     return item.title
   })
@@ -145,7 +145,7 @@ function Filter({
   }
   const rating_handleChange = (event, newValue) => {
     set_rating_Value(newValue)
-    console.log("rating filter value", newValue)
+    // console.log("rating filter value", newValue)
   }
 
   const category_handleChange = (event, value) => {

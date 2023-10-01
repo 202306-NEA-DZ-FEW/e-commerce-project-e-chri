@@ -4,9 +4,10 @@ import { useAppcontext } from "@/context/state"
 
 export default function ToggleButton({}) {
   const [isChecked, setIsChecked] = useState(false)
-  const { toggledarkMode } = useAppcontext()
+  const { darkMode, toggledarkMode } = useAppcontext()
   function handleToggle() {
     // toggle()
+    localStorage.setItem("darkMode", darkMode ? "true" : "false")
     toggledarkMode()
     setIsChecked(!isChecked)
   }

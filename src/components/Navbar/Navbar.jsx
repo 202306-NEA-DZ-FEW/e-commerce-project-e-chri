@@ -9,7 +9,7 @@ import { signOut } from "firebase/auth"
 import { auth } from "@/util/firebase"
 
 function Navbar({}) {
-  const { theme, setTheme } = useTheme()
+  // const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
   const {
     categories,
@@ -23,9 +23,9 @@ function Navbar({}) {
   } = useAppcontext()
   const router = useRouter()
 
-  function handleMode() {
-    toggledarkMode()
-  }
+  // function handleMode() {
+  //   toggledarkMode()
+  // }
   async function handleSearch(e) {
     e.preventDefault()
     router.push(`/Search?query=${e.target[0].value}`)
@@ -65,8 +65,12 @@ function Navbar({}) {
           className='hidden md:flex flex-row items-center w-full justify-around relative after:content:"" after:h-px after:w-11/12 after:absolute after:bg-OxfordBlue 
             after:dark:bg-DarkWhite after:-bottom-3 '
         >
-          <Link href={"/"} className="w-1/5 px-4 py-2 text-3xl font-black">
-            E-CHRI{" "}
+          <Link
+            href={"/"}
+            className="w-1/5 px-4 py-2 text-5xl font-black flex flex-row items-center"
+          >
+            <img src="/echri-icon.svg" width={40} height={40} alt="" />
+            -chri
           </Link>
           <div className="flex flex-row items-center w-full px-4 relative ">
             <form
@@ -101,7 +105,7 @@ function Navbar({}) {
               <FiSearch />
             </button>
             {logBtn}
-            <ToggleBtn toggle={handleMode} />
+            <ToggleBtn />
           </div>
         </div>
         <div className="w-full flex flex-row justify-around">

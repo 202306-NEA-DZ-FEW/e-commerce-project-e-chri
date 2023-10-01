@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 import { categories } from "./data"
 import { useTheme } from "next-themes"
 import { onAuthStateChanged } from "firebase/auth"
@@ -8,12 +8,18 @@ import { updateFirestoreCart } from "@/util/firebase"
 const AppContext = createContext()
 
 export function AppWrapper({ children }) {
-  const { theme, setTheme } = useTheme()
+  // const {theme, setTheme} = useTheme();
+  const [theme, setTheme] = useState("light")
   const [darkMode, setDarkMode] = useState(false)
   const [isLogged, setIsLogged] = useState(false)
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false)
   const [user, setUser] = useState({})
   const [cart, setCart] = useState([])
+
+  useEffect(() => {
+    setTheme(darkMode ? "dark" : "light")
+    console.log("state usefect", theme)
+  }, [darkMode])
 
   async function authChange() {
     onAuthStateChanged(auth, (logUser) => {
@@ -37,7 +43,12 @@ export function AppWrapper({ children }) {
 
   function toggledarkMode() {
     setDarkMode(!darkMode)
-    console.log("darkmode", darkMode)
+    // console.log("darkmode", darkMode)
+    const newTheme = theme === "dark" ? "light" : "dark"
+    localStorage.setItem("theme", newTheme)
+    setTheme(newTheme)
+    console.log("old theme", theme)
+    console.log("new theme", newTheme)
   }
   function addToCart(product) {
     setCart([...cart, product])

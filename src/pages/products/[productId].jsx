@@ -4,11 +4,11 @@ import { FiTruck, FiRepeat } from "react-icons/fi"
 import ProductCard from "@/components/ProductCard/ProductCard"
 
 export default function SingleProduct({ productDetail }) {
-  console.log("product", productDetail.category)
+  // console.log("product", productDetail.category)
   useEffect(() => {
     fetcher(`/search?q=${qte}`).then((res) => {
       setRelated(res.products)
-      console.log("res", res.products)
+      // console.log("res", res.products)
     })
   }, [productDetail])
   // console.log('prodeuct details', productDetail)
@@ -20,8 +20,8 @@ export default function SingleProduct({ productDetail }) {
   const sideImages = AllImages.filter((img) => {
     return img !== selectedImg
   })
-  console.log("side images", sideImages)
-  console.log("selected Img", AllImages[selectedImg])
+  // console.log("side images", sideImages)
+  // console.log("selected Img", AllImages[selectedImg])
 
   function handleQte(n) {
     if (n === 0) {

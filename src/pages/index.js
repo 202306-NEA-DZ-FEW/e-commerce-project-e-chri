@@ -12,6 +12,9 @@ import Categories from "@/context/data"
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
   const { darkMode, toggledarkMode, isShoppingCartOpen } = useAppcontext()
+  useEffect(() => {
+    setTheme(darkMode ? "light" : "dark")
+  }, [darkMode])
 
   const images = [
     "https://tinyurl.com/Echeri",
