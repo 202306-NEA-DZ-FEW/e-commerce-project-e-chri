@@ -28,6 +28,7 @@ function Navbar({}) {
 
   function handleMode() {
     toggledarkMode()
+    setTheme(darkMode ? "light" : "dark")
   }
   async function handleSearch(e) {
     e.preventDefault()
