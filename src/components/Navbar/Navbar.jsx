@@ -109,7 +109,7 @@ function Navbar({}) {
             <span key={cat} className="text-base font-medium">
               <Link
                 className="hover:border-b border-b-[#1E4445] hover:text-RedPoppy"
-                href={`./categories/${cat}`}
+                href={`/categories/${cat}`}
               >
                 {cat}
               </Link>
