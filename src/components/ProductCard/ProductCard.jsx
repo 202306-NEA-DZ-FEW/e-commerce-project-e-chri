@@ -30,44 +30,33 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
   }
 
   return (
-    <div className="w-64 h-80 p-4 bg-transparent rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+    <div class="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
       <div className="relative">
-        <Link href={`../products/${id}`}>
-          <img
-            className="w-full h-52 object-cover bg-transparent"
-            src={thumbnail}
-            alt={title}
-          />
+        <img
+          class="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
+          src={thumbnail}
+          alt={title}
+        />
+        <Link
+          href={`../products/${id}`}
+          className="overflow-hidden absolute text-xl font-semibold flex justify-center items-center left-0 top-0 w-0 h-0 bg-[rgba(255,255,255,.1)] backdrop-blur-sm backdrop-filter bg-opacity-50 text-center  text-RedPoppy group-hover:w-full group-hover:h-full"
+        >
+          View more!
         </Link>
-        <div className="absolute top-2 right-2">
+      </div>
+      <div class="p-4">
+        <h2 class="text-ml font-poppins dark:text-black font-semibold">
+          {title}
+        </h2>
+        <p class="text-[#DB4444] font-semibold">${price}</p>
+        <div class="flex justify-between items-center mt-4">
           <button
             onClick={handleAddToCart}
-            className="opacity-0 group-hover:opacity-100 bg-RedPoppy text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+            class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              />
-            </svg>
+            Add To Cart
           </button>
         </div>
-      </div>
-      <div className="p-4">
-        <Link href={`../products/${id}`}>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:underline">
-            {title}
-          </h2>
-        </Link>
-        <p className="text-gray-600 dark:text-gray-300">${price}</p>
       </div>
     </div>
   )
