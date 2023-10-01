@@ -1,3 +1,5 @@
+import lilia from "../images/lilia.png"
+
 export const categories = [
   "smartphones",
   "laptops",
@@ -19,4 +21,44 @@ export const categories = [
   "automotive",
   "motorcycle",
   "lighting",
+]
+
+export const members = [
+  {
+    name: "Lilia Bendjeddou",
+    githubLink: " ",
+    linkedinLink: "",
+    image: lilia,
+  },
+  {
+    name: "Khalil Noui",
+    githubLink: " ",
+    linkedinLink: "",
+    image: lilia,
+  },
+  {
+    name: "Abdelghani Bahri",
+    githubLink: "",
+    linkedinLink: "",
+    image: lilia,
+  },
+  {
+    name: "Sara Begache",
+    githubLink: "",
+    linkedinLink: "",
+    image: lilia,
+  },
+  {
+    name: "Khaoula Aourra",
+    githubLink: "",
+    linkedinLink: "",
+    image: lilia,
+  },
+
+  {
+    name: "Brahim Hadj Mahammed",
+    githubLink: "",
+    linkedinLink: "",
+    image: lilia,
+  },
 ]
