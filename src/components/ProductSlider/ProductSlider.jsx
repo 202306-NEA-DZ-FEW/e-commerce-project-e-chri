@@ -54,7 +54,7 @@ function ProductSlider({ products }) {
         <h5 className="text-2xl leading-8 font-poppins font-bold mb-8 text-OxfordBlue dark:text-DarkWhite">
           Explore Our Latest Products
         </h5>
-        <Link href="">
+        <Link href="../products/products">
           <button class="bg-RedPoppy w-46 h-12 hover:bg-OxfordBlue text-base text-DarkWhite font-poppins px-4 py-2  focus:outline-none focus:ring-2 focus:ring-blue-400">
             View All Products
           </button>

@@ -9,7 +9,6 @@ import Link from "next/link"
 import ProductSlider from "@/components/ProductSlider/ProductSlider"
 import Categories from "@/context/data"
 
-
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
   const { darkMode, toggledarkMode, isShoppingCartOpen } = useAppcontext()
@@ -20,23 +19,21 @@ export default function Home({ products, categories }) {
     "https://tinyurl.com/Echeri3",
   ]
 
-  function handleMode() {
-    toggledarkMode()
-    setTheme(darkMode ? "light" : "dark")
-  }
-  ;[darkMode]
-  console.log({ Categories })
+  // function handleMode() {
+  //   toggledarkMode()
+  //   setTheme(darkMode ? "light" : "dark")
+  // }
+  // ;[darkMode]
+  // console.log({ Categories })
 
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
-      <div className="w-20 h-20 ">
+      {/* <div className="w-20 h-20 ">
         <button onClick={handleMode} className="bg-red-400">
           toggle
         </button>
-      </div>
-      <Link href="/products/products">View All Products</Link>
+      </div> */}
       <Slider images={images} />
-
       <ProductSlider products={products} />
       <div className="flex items-center justify-center">
         <img
@@ -45,9 +42,6 @@ export default function Home({ products, categories }) {
           className="w-120 max-h-52 object-cover item-center"
         />
       </div>
-      {/* <ProductSlider products={products} /> */}
-
-      {/* <AllProducts products={products} /> */}
       {isShoppingCartOpen && <ShoppingCart />}
     </main>
   )
