@@ -19,6 +19,9 @@ export default function Home({ products, categories }) {
     "https://tinyurl.com/Echeri2",
     "https://tinyurl.com/Echeri3",
   ]
+  useEffect(() => {
+    setTheme(darkMode ? "light" : "dark")
+  }, [darkMode])
 
   // function handleMode() {
   //   toggledarkMode()

@@ -4,7 +4,7 @@ import { BsLinkedin } from "react-icons/bs"
 
 export default function Item({ name, githubLink, linkedinLink, image }) {
   return (
-    <div className="bg-OxfordBlue shadow-inner hover:shadow-EnglishViolet transform hover:scale-105 rounded-lg p-4 text-center ">
+    <div className="bg-white dark:bg-OxfordBlue shadow-inner hover:shadow-EnglishViolet transform hover:scale-105 rounded-lg p-4 text-center ">
       <div className=" text-lg font-semibold text-center">
         <Image
           src={image}
