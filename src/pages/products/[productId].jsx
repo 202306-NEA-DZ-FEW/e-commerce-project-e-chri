@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard/ProductCard"
 export default function SingleProduct({ productDetail }) {
   console.log("product", productDetail.category)
   useEffect(() => {
+    setSelectedImg(productDetail.images[0])
     fetcher(`/search?q=${qte}`).then((res) => {
       setRelated(res.products)
       console.log("res", res.products)
@@ -16,12 +17,24 @@ export default function SingleProduct({ productDetail }) {
   const [selectedImg, setSelectedImg] = useState(AllImages[0])
   const [qte, setQte] = useState(1)
   const [related, setRelated] = useState([])
-  // console.log('all images', AllImages)
+
+  const [backgroundPosition, setbackgroundPosition] = useState()
+
   const sideImages = AllImages.filter((img) => {
     return img !== selectedImg
   })
   console.log("side images", sideImages)
   console.log("selected Img", AllImages[selectedImg])
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect()
+    const x = ((e.pageX - left) / width) * 100
+    const y = ((e.pageY - top) / height) * 100
+    setbackgroundPosition(`${x}% ${y}%`)
+  }
+  const handleMouseLeave = (e) => {
+    setbackgroundPosition(undefined)
+  }
 
   function handleQte(n) {
     if (n === 0) {
@@ -34,29 +47,37 @@ export default function SingleProduct({ productDetail }) {
   }
   return (
     <main className="flex container mt-10 flex-col h-full w-full justify-around items-center">
-      <div className="flex flex-row items-center justify-around gap-4">
-        <div className="flex flex-col items-center justify-around w-1/5">
-          {sideImages.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedImg(img)}
-              className="w-28 h-28 p-2 "
-            >
-              <img
-                src={img}
-                alt={productDetail.title}
-                className="aspect-square rounded-lg shadow-[0_0_4px_4px_rgba(0,0,0,.2)]"
-              />
-            </button>
-          ))}
-        </div>
-        <div className="w-2/5 p-1">
-          <img src={selectedImg} alt="" className=" w-96 h-96 object-contain" />
+      <div className="flex flex-col lg:flex-row md:flex-row items-center justify-around gap-4">
+        <div className="w-1/2 lg:w-3/5 md:w-3/5 flex flex-col-reverse md:flex-row sm:flex-row items-center">
+          <div className="flex flex-row lg:felx-col md:flex-col items-center justify-around w-1/2 md:w-1/3 lg:w-1/3">
+            {sideImages.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImg(img)}
+                className="w-28 h-28 p-2 "
+              >
+                <img
+                  src={img}
+                  alt={productDetail.title}
+                  className="aspect-square rounded-lg shadow-[0_0_4px_4px_rgba(0,0,0,.2)]"
+                />
+              </button>
+            ))}
+          </div>
+          <div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="p-1 w-full h-64 md:w-2/3 lg:w-2/3  md:h-72 lg:h-72 bg-no-repeat"
+            style={{
+              backgroundImage: `url(${selectedImg})`,
+              backgroundPosition: backgroundPosition,
+            }}
+          ></div>
         </div>
 
-        <div className="w-2/5 flex flex-col items-center justify-between text-left">
+        <div className="w-1/2 lg:w-2/5 md:w-2/5 flex flex-col items-center justify-between text-left">
           <div className="w-full flex flex-col gap-2 items-start">
-            <h1 className="text-6xl font-poppins dark:text-white font-black">
+            <h1 className="lg:text-6xl md:text-6xl text-3xl font-poppins dark:text-white font-black">
               {productDetail.title}
             </h1>
             <p>
@@ -67,11 +88,11 @@ export default function SingleProduct({ productDetail }) {
               </span>
             </p>
             <p>In Stock : {productDetail.stock}</p>
-            <p className="text-4xl w-11/12 font-poppins relative dark:text-white font-semibold  ">
+            <p className="text-2xl lg:text-4xl md:text-4xl w-11/12 font-poppins relative dark:text-white font-semibold  ">
               ${productDetail.price}
             </p>
           </div>
-          <p className="text-lg font-poppins w-full dark:text-white font-light my-6 relative after:content[''] after:w-full after:h-px after:bg-RedPoppy after:absolute after:left-0 after:-bottom-2 ">
+          <p className="lg:text-lg md:text-lg text-base font-poppins w-full dark:text-white font-light my-6 relative after:content[''] after:w-full after:h-px after:bg-RedPoppy after:absolute after:left-0 after:-bottom-2 ">
             Brand : {productDetail.brand} <br />
             Description : {productDetail.description}
           </p>
@@ -98,7 +119,7 @@ export default function SingleProduct({ productDetail }) {
                 +
               </button>
             </span>
-            <button className="w-fit px-2 h-12 text-white bg-RedPoppy rounded font-medium text-xl">
+            <button className="w-fit px-2 h-12 text-white bg-RedPoppy rounded font-medium md:text-xl lg:text-xl text-lg">
               + Add to cart
             </button>
           </div>
@@ -132,9 +153,9 @@ export default function SingleProduct({ productDetail }) {
         >
           Related products
         </h1>
-        <div className="flex flex-row items-center justify-around w-4/5 px-8 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-around w-4/5 px-8 gap-10">
           {related.slice(0, 4).map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard key={product.id} {...product} className=" w-fit" />
           ))}
         </div>
       </div>

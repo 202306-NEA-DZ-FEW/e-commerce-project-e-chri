@@ -42,7 +42,7 @@ function Navbar({}) {
       })
   }
   const logBtn = isLogged ? (
-    <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
+    <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-40">
       <FiUser onClick={handleLogOut} />
       <FiShoppingCart
         onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
@@ -62,10 +62,10 @@ function Navbar({}) {
     <nav className="bg-[#F7F7FC] dark:bg-[#4E4B66] w-full h-32 px-5 py-2 flex items-center">
       <div className="flex flex-col w-full gap-7 ">
         <div
-          className='hidden md:flex flex-row items-center w-full justify-around relative after:content:"" after:h-px after:w-11/12 after:absolute after:bg-OxfordBlue 
-            after:dark:bg-DarkWhite after:-bottom-3 '
+          className='md:flex flex-row items-center w-full justify-around relative after:content:"" after:h-px after:w-11/12 after:absolute after:bg-OxfordBlue 
+            after:dark:bg-DarkWhite after:-bottom-3 sm:items-end '
         >
-          <Link href={"/"} className="w-1/5 px-4 py-2 text-3xl font-black">
+          <Link href={"/"} className=" w-1/5 px-4 py-2 text-3xl font-black">
             E-CHRI{" "}
           </Link>
           <div className="flex flex-row items-center w-full px-4 relative ">
@@ -93,7 +93,7 @@ function Navbar({}) {
               />
             </form>
           </div>
-          <div className="w-1/3 flex items-center justify-around">
+          <div className="lg:w-1/3 flex items-center justify-around w-full ">
             <button
               onClick={() => setWideBar(!wideBar)}
               className="text-lg font-semibold w-8 h-8 "

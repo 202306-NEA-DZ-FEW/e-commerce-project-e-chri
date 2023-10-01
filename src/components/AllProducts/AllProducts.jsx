@@ -29,7 +29,7 @@ export default function AllProducts({ products }) {
       <h1 className="font-bold text-3xl font-poppins ml-20">
         Explore Our Products
       </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-2 gap-y-8 m-20">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-8 m-20">
         {currentProducts.map((product) => (
           <div key={product.id}>
             <ProductCard {...product} />
