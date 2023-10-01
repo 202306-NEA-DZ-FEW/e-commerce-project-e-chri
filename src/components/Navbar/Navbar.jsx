@@ -7,6 +7,7 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/router"
 import { signOut } from "firebase/auth"
 import { auth } from "@/util/firebase"
+import LogOut from "./LogOut"
 import Image from "next/image"
 import logo from "../../images/logoo.png"
 
@@ -45,7 +46,8 @@ function Navbar({}) {
   }
   const logBtn = isLogged ? (
     <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
-      <FiUser onClick={handleLogOut} />
+      {/* <FiUser onClick={handleLogOut} /> */}
+      <LogOut signOut={handleLogOut} />
       <FiShoppingCart
         onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
         className="text-lg font-semibold w-8 h-8"
