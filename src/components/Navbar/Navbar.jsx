@@ -7,6 +7,9 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/router"
 import { signOut } from "firebase/auth"
 import { auth } from "@/util/firebase"
+import LogOut from "./LogOut"
+import Image from "next/image"
+import logo from "../../images/logoo.png"
 
 function Navbar({}) {
   const { theme, setTheme } = useTheme()
@@ -42,8 +45,9 @@ function Navbar({}) {
       })
   }
   const logBtn = isLogged ? (
-    <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-40">
-      <FiUser onClick={handleLogOut} />
+    <div className="text-2xl font-bold flex flex-row w-fit p-4 gap-10">
+      {/* <FiUser onClick={handleLogOut} /> */}
+      <LogOut signOut={handleLogOut} />
       <FiShoppingCart
         onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
         className="text-lg font-semibold w-8 h-8"
@@ -65,8 +69,9 @@ function Navbar({}) {
           className='md:flex flex-row items-center w-full justify-around relative after:content:"" after:h-px after:w-11/12 after:absolute after:bg-OxfordBlue 
             after:dark:bg-DarkWhite after:-bottom-3 sm:items-end '
         >
-          <Link href={"/"} className=" w-1/5 px-4 py-2 text-3xl font-black">
-            E-CHRI{" "}
+          <Link href={"/"} className="px-4 py-2 text-3xl font-black">
+            {/* E-CHRI{" "} */}
+            <Image src={logo} width={200} height={200} alt="Logo-Echri" />
           </Link>
           <div className="flex flex-row items-center w-full px-4 relative ">
             <form
@@ -107,7 +112,12 @@ function Navbar({}) {
         <div className="w-full flex flex-row justify-around">
           {categories.map((cat) => (
             <span key={cat} className="text-base font-medium">
-              {cat}
+              <Link
+                className="hover:border-b border-b-[#1E4445] hover:text-RedPoppy"
+                href={`/categories/${cat}`}
+              >
+                {cat}
+              </Link>
             </span>
           ))}
         </div>

@@ -3,14 +3,43 @@ import ProductCard from "../ProductCard/ProductCard"
 import { useState } from "react"
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi"
 
-export default function AllProducts({ products }) {
+export default function AllProducts({
+  products,
+  rating_value,
+  price_value,
+  category_value,
+  search_value,
+}) {
+  const displayed = products.products.filter((pro) => {
+    console.log(
+      "test displayed",
+      pro["title"],
+      pro["title"].includes(search_value),
+    )
+    console.log("search ", search_value)
+    if (
+      rating_value === 0 &&
+      price_value === 2500 &&
+      search_value === ""
+      // && category_value === "All"
+    )
+      return true
+    else
+      return (
+        pro.rating > rating_value &&
+        pro.price < price_value &&
+        pro["title"].includes(search_value)
+        // &&
+        // pro.category === category_value
+      )
+  })
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 8
 
   // Calculate the index range for the current page
   const indexOfLastProduct = currentPage * productsPerPage
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-  const currentProducts = products.products.slice(
+  const currentProducts = displayed.slice(
     indexOfFirstProduct,
     indexOfLastProduct,
   )
