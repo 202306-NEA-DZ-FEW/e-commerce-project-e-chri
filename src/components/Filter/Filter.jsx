@@ -7,6 +7,8 @@ import Rating from "@mui/material/Rating"
 import FormGroup from "@mui/material/FormGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
+import { categories } from "@/context/data"
+import { useAppcontext } from "@/context/state"
 
 function removeValue(value, arr) {
   return arr.filter((item) => value != item)
@@ -41,18 +43,31 @@ function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value) + 1
 }
 
-function Filter({ all_products, Update_product_state }) {
+function Filter({
+  /* all_products, setProducts  */ set_rating_Value,
+  rating_value,
+  price_value,
+  set_price_Value,
+  search_value,
+  set_search_value,
+  category_value,
+  set_category_Value,
+}) {
   const [filter_product, set_filter_product] = useState()
   const [initialRender, setInitialRender] = useState(true)
+  const [isChecked, setIsChecked] = useState("All")
 
-  const suggestion_name = all_products.map((item) => {
+  const { products, setProducts } = useAppcontext()
+
+  console.log("filter component", products)
+  const suggestion_name = products.map((item) => {
     return item.title
   })
-  const category = new Set()
-  all_products.forEach((element) => {
-    category.add(element.category)
-  })
-
+  // const category = new Set()
+  // all_products.forEach((element) => {
+  //   // category.add(element.category)
+  // })
+  const filteredProducts = products
   const filter_handlerchange = (
     name = undefined,
     rating = undefined,
@@ -60,17 +75,15 @@ function Filter({ all_products, Update_product_state }) {
     price = undefined,
   ) => {
     if (category_value.includes("All")) {
-      set_filter_product(all_products)
-      Update_product_state(all_products)
-      console.log("filter result", all_products)
-      console.log("filter state ", all_products)
+      set_filter_product(products)
+      setProducts(products)
       return
     }
     if (rating === undefined) {
-      set_filter_product(all_products)
-      Update_product_state(all_products)
+      set_filter_product(products)
+      setProducts(products)
     } else {
-      const new_products = all_products.filter((product) =>
+      const new_products = products.filter((product) =>
         category_value.includes(product.category),
       )
       // .filter((product) => product.title === name)
@@ -80,51 +93,47 @@ function Filter({ all_products, Update_product_state }) {
       // )
 
       set_filter_product(new_products)
-      Update_product_state(new_products)
-      console.log("filter result", new_products)
-      console.log("filter state ", filter_product)
+      setProducts(new_products)
+      // console.log("filter result", new_products)
+      // console.log("filter state ", filter_product)
     }
   }
 
-  const [price_value, set_price_Value] = useState(2500)
-  const [rating_value, set_rating_Value] = useState()
-  const [search_value, set_search_value] = useState()
-  const [category_value, set_category_Value] = useState("All")
+  // useEffect(() => {
+  //   if (initialRender) {
+  //     setInitialRender(false)
+  //     return
+  //   }
+  //   filter_handlerchange(
+  //     search_value,
+  //     rating_value,
+  //     category_value,
+  //     price_value,
+  //   )
+  // }, [search_value, category_value])
 
-  useEffect(() => {
-    if (initialRender) {
-      setInitialRender(false)
-      return
-    }
-    filter_handlerchange(
-      search_value,
-      rating_value,
-      category_value,
-      price_value,
-    )
-  }, [search_value, category_value])
-
-  useEffect(() => {
-    if (initialRender) {
-      setInitialRender(false)
-      return
-    }
-    filter_handlerchange(
-      search_value,
-      rating_value,
-      category_value,
-      price_value,
-    )
-  }, [price_value, rating_value])
+  // useEffect(() => {
+  //   if (initialRender) {
+  //     setInitialRender(false)
+  //     return
+  //   }
+  //   filter_handlerchange(
+  //     search_value,
+  //     rating_value,
+  //     category_value,
+  //     price_value,
+  //   )
+  // }, [price_value, rating_value])
 
   const price_handleChange = (event, newValue) => {
+    // console.log('price type', typeof newValue)
     set_price_Value(newValue)
-    console.log("price filter value", newValue)
+    // console.log("price filter value", newValue)
   }
   const search_handleChange = (event, newValue) => {
-    console.log("name filter value", newValue)
+    // console.log("name filter value", newValue)
     if (newValue === "All Products") {
-      set_search_value(undefined)
+      set_search_value("")
     } else {
       set_search_value(newValue)
     }
@@ -135,13 +144,15 @@ function Filter({ all_products, Update_product_state }) {
   }
 
   const category_handleChange = (event, value) => {
-    console.log("category filter value", value)
+    // console.log("category filter value", value)
     if (event.target.checked) {
-      set_category_Value([].concat(category_value, value))
-    } else {
-      set_category_Value(removeValue(value, category_value))
+      set_category_Value(value)
+      setIsChecked(value)
     }
-    console.log("category filter state", category_value)
+    //  else {
+    //   set_category_Value(removeValue(value, category_value))
+    // }
+    // console.log("category filter state", category_value)
   }
 
   return (
@@ -212,18 +223,19 @@ function Filter({ all_products, Update_product_state }) {
           <FormControlLabel
             control={
               <Checkbox
-                defaultChecked
+                checked={isChecked === "All"}
                 onChange={(e) => category_handleChange(e, "All")}
               />
             }
             label="All"
           />
-          {[...category].map((item, index) => {
+          {[...categories].map((item, index) => {
             return (
               <FormControlLabel
                 control={
                   <Checkbox onChange={(e) => category_handleChange(e, item)} />
                 }
+                checked={isChecked === item}
                 label={item}
                 key={index}
               />

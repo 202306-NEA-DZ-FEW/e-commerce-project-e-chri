@@ -24,7 +24,7 @@ export default function Home({ products }) {
       <div className="w-20 h-20 ">
         <button className="bg-red-400">toggle</button>
       </div>
-      <ProductDisplay products={products.products}></ProductDisplay>
+      <ProductDisplay productsProp={products.products}></ProductDisplay>
       {/* <AllProducts
         products={all_products}
         setProducts={setAllProducts}
