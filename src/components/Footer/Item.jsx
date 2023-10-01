@@ -8,7 +8,7 @@ export default function Item({ name, githubLink, linkedinLink, image }) {
       <div className=" text-lg font-semibold text-center">
         <Image
           src={image}
-          alt="member's name"
+          alt="name"
           style={{ objectFit: "cover" }}
           className=" w-20 h-20 mx-auto rounded-full mb-2"
         />
