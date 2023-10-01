@@ -18,10 +18,10 @@ function valuetext(value) {
   return `${value}$`
 }
 const marks = [
-  {
-    value: 100,
-    label: "100",
-  },
+  // {
+  //   value: 100,
+  //   label: "100",
+  // },
   {
     value: 200,
     label: "200",
@@ -33,6 +33,10 @@ const marks = [
   {
     value: 1000,
     label: "1k",
+  },
+  {
+    value: 1500,
+    label: "1.5k",
   },
   {
     value: 2500,
@@ -157,13 +161,13 @@ function Filter({
   }
 
   return (
-    <div className=" pl-2 flex flex-row w-full">
-      <div className="flex flex-row my-1 text-center">
+    <div className=" flex flex-row w-full justify-around mt-10">
+      <div className="flex flex-row px-2 text-center w-fit items-center ">
         <TuneIcon></TuneIcon>
         <strong>Filter </strong>
       </div>
-      <hr></hr>
-      <div id="name_search" className="my-1">
+      {/* <hr></hr> */}
+      <div id="name_search" className="px-2 w-1/3">
         <Autocomplete
           onChange={search_handleChange}
           freeSolo
@@ -191,7 +195,7 @@ function Filter({
         />
       </div>
 
-      <div id="price" className="my-1">
+      <div id="price" className="px-2 w-1/3">
         <strong>Price</strong>
         <span className="flex ">
           <Slider
@@ -208,7 +212,7 @@ function Filter({
           <strong className=" w-1/4 text-center">$</strong>
         </span>
       </div>
-      <div id="rating" className="my-1">
+      <div id="rating" className="px-2 w-1/5 flex flex-col ">
         <strong>rating</strong>
         <Rating
           name="half-rating"
