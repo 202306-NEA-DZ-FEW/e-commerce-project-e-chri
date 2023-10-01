@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import ProductCard from "@/components/ProductCard/ProductCard"
+import Link from "next/link"
 
 function ProductSlider({ products }) {
   const maxScrollWidth = useRef(0)
@@ -48,20 +49,27 @@ function ProductSlider({ products }) {
   }, [])
 
   return (
-    <div className="carousel my-12 mx-auto">
-      <h5 className="text-2xl leading-8 font-poppins mb-12 text-OxfordBlue dark:text-DarkWhite">
-        Explore Our Latest Products
-      </h5>
+    <div className="carousel my-12 mx-20">
+      <div className="flex justify-between ">
+        <h5 className="text-2xl leading-8 font-poppins font-bold mb-8 text-OxfordBlue dark:text-DarkWhite">
+          Explore Our Latest Products
+        </h5>
+        <Link href="">
+          <button class="bg-RedPoppy w-46 h-12 hover:bg-OxfordBlue text-base text-DarkWhite font-poppins px-4 py-2  focus:outline-none focus:ring-2 focus:ring-blue-400">
+            View All Products
+          </button>
+        </Link>
+      </div>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
           <button
             onClick={movePrev}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+            className="bg-RedPoppy hover:bg-gray-300 text-white w-10 h-10 my-auto rounded-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("prev")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-20 -ml-5"
+              className="h-10 w-10"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -77,12 +85,12 @@ function ProductSlider({ products }) {
           </button>
           <button
             onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+            className="bg-RedPoppy hover:bg-gray-300 text-white rounded-full w-10 h-10 my-auto text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("next")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-20 -ml-5"
+              className="h-10 w-10"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -105,7 +113,7 @@ function ProductSlider({ products }) {
             return (
               <div
                 key={index}
-                className="carousel-item text-center relative w-64 h-80 snap-start"
+                className="carousel-item relative w-64 h-80 snap-start"
               >
                 <ProductCard
                   title={product.title}
