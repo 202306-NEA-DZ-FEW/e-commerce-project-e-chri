@@ -60,8 +60,8 @@ export default function ShoppingCart() {
               <ul role="list" className="-my-6 divide-y divide-gray-200">
                 {cart.map((product) => (
                   <li key={product.id} className="flex py-6">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                      <image
+                    <div className="h-20 w-h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <img
                         src={product.thumbnail}
                         alt={product.title}
                         className="h-full w-full object-cover object-center"

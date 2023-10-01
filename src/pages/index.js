@@ -6,6 +6,9 @@ import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 import Slider from "@/components/Slider/Slider"
 import { useEffect } from "react"
 import Link from "next/link"
+import ProductSlider from "@/components/ProductSlider/ProductSlider"
+import Categories from "@/context/data"
+
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
@@ -22,6 +25,7 @@ export default function Home({ products, categories }) {
     setTheme(darkMode ? "light" : "dark")
   }
   ;[darkMode]
+  console.log({ Categories })
 
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
@@ -32,7 +36,18 @@ export default function Home({ products, categories }) {
       </div>
       <Link href="/products/products">View All Products</Link>
       <Slider images={images} />
-      <AllProducts products={products} />
+
+      <ProductSlider products={products} />
+      <div className="flex items-center justify-center">
+        <img
+          src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/online-classes-study-online-from-home-banner-design-template-dfe22f6485ee61ddb60257c85e4afa9b_screen.jpg?ts=1615781771"
+          alt="Banner"
+          className="w-120 max-h-52 object-cover item-center"
+        />
+      </div>
+      {/* <ProductSlider products={products} /> */}
+
+      {/* <AllProducts products={products} /> */}
       {isShoppingCartOpen && <ShoppingCart />}
     </main>
   )

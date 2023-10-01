@@ -19,12 +19,9 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
 
   const handleAddToCart = async () => {
     if (isLogged) {
-      // fetchUserCart(userId)
-      // Fetch the user's cart data
       const userId = auth?.currentUser?.uid
       const userCartData = await fetchUserCart(userId)
-      console.log("the fetch result", userCartData)
-      // Update the user's cart in Firestore
+
       updateFirestoreCart(userId, userCartData)
       addToCart(product)
     } else {
@@ -32,54 +29,45 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
     }
   }
 
-
   return (
-    <div class="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+    <div className="w-64 h-80 p-4 bg-transparent rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
       <div className="relative">
-        <img
-          class="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
-          src={thumbnail}
-          alt={title}
-        />
-        <Link
-          href={`../products/${id}`}
-          className="overflow-hidden absolute text-xl font-semibold flex justify-center items-center left-0 top-0 w-0 h-0 bg-[rgba(255,255,255,.1)] backdrop-blur-sm backdrop-filter bg-opacity-50 text-center  text-RedPoppy group-hover:w-full group-hover:h-full"
-        >
-          {/* <button
-              title="Add New"
-              class="group cursor-pointer active:scale-100 duration-200"
-            > */}
-          View more!
-          {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="50px"
-                viewBox="0 0 24 24"
-                class="stroke-OxfordBlue fill-none group-active:fill-RedPoppy duration-200"
-              >
-                <path
-                  d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                  stroke-width="1.5"
-                ></path>
-                <path d="M8 12H16" stroke-width="1.5"></path>
-                <path d="M12 16V8" stroke-width="1.5"></path>
-              </svg> */}
-          {/* </button> */}
+        <Link href={`../products/${id}`}>
+          <img
+            className="w-full h-52 object-cover bg-transparent"
+            src={thumbnail}
+            alt={title}
+          />
         </Link>
-      </div>
-      <div class="p-4">
-        <h2 class="text-ml font-poppins dark:text-black font-semibold">
-          {title}
-        </h2>
-        <p class="text-[#DB4444] font-semibold">${price}</p>
-        <div class="flex justify-between items-center mt-4">
-
-          <button  onClick={handleAddToCart}
-          class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-
-            Add To Cart
+        <div className="absolute top-2 right-2">
+          <button
+            onClick={handleAddToCart}
+            className="opacity-0 group-hover:opacity-100 bg-RedPoppy text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              />
+            </svg>
           </button>
         </div>
+      </div>
+      <div className="p-4">
+        <Link href={`../products/${id}`}>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:underline">
+            {title}
+          </h2>
+        </Link>
+        <p className="text-gray-600 dark:text-gray-300">${price}</p>
       </div>
     </div>
   )
