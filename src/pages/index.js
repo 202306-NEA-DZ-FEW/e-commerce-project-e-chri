@@ -5,8 +5,10 @@ import AllProducts from "@/components/AllProducts/AllProducts"
 import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 import Slider from "@/components/Slider/Slider"
 import { useEffect } from "react"
+import Link from "next/link"
 import ProductSlider from "@/components/ProductSlider/ProductSlider"
 import Categories from "@/context/data"
+
 
 export default function Home({ products, categories }) {
   const { theme, setTheme } = useTheme()
@@ -32,6 +34,7 @@ export default function Home({ products, categories }) {
           toggle
         </button>
       </div>
+      <Link href="/products/products">View All Products</Link>
       <Slider images={images} />
 
       <ProductSlider products={products} />
