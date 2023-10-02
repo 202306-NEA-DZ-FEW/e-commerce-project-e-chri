@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react"
-import ProductCard from "@/components/ProductCard/ProductCard"
 import Link from "next/link"
+import { categoriesImgs } from "@/context/data"
 
-function ProductSlider({ products }) {
+function CategoriesSlider() {
   const maxScrollWidth = useRef(0)
   const [currentIndex, setCurrentIndex] = useState(0)
   const carousel = useRef(null)
@@ -49,18 +49,11 @@ function ProductSlider({ products }) {
   }, [])
 
   return (
-    <div className="carousel my-32 mx-20">
-      <div className="flex justify-between ">
-        <h5 className="text-2xl leading-8 font-poppins font-bold mb-8 text-OxfordBlue dark:text-DarkWhite">
-          Explore Our Latest Products
-        </h5>
-        <Link href="../products/products">
-          <button className="bg-RedPoppy w-46 lg:h-12 md:h-12 h-16  hover:bg-OxfordBlue text-base text-DarkWhite font-poppins px-4 py-2  focus:outline-none focus:ring-2 focus:ring-blue-400">
-            View All Products
-          </button>
-        </Link>
-      </div>
+    <div className="carousel my-12 mx-20">
       <div className="relative overflow-hidden">
+        <h5 className="text-2xl leading-8 font-poppins font-bold mb-8 text-OxfordBlue dark:text-DarkWhite">
+          Explore Our Different Categories
+        </h5>
         <div className="flex justify-between absolute top left w-full h-full">
           <button
             onClick={movePrev}
@@ -109,19 +102,40 @@ function ProductSlider({ products }) {
           ref={carousel}
           className="carousel-container relative flex gap-6 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {products.products.map((product, index) => {
+          {categoriesImgs.map((category, index) => {
+            const title = Object.keys(category)[0]
+            const imageUrl = category[title]
+
             return (
               <div
                 key={index}
-                className="carousel-item relative w-64 h-80 snap-start"
+                className={`carousel-item relative w-64 h-80 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group`}
               >
-                <ProductCard
-                  title={product.title}
-                  price={product.price}
-                  thumbnail={product.thumbnail}
-                  brand={product.brand}
-                  id={product.id}
-                />
+                <div className="relative">
+                  <img
+                    className="w-full h-40  p-3 rounded-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
+                    src={imageUrl || ""}
+                    alt={title}
+                  />
+                  <Link
+                    href={`./categories/${title}`}
+                    className="overflow-hidden absolute text-xl font-semibold flex justify-center items-center left-0 top-0 w-0 h-0 bg-[rgba(255,255,255,.1)] backdrop-blur-sm backdrop-filter bg-opacity-50 text-center text-RedPoppy group-hover:w-full group-hover:h-full"
+                  >
+                    View Category
+                  </Link>
+                </div>
+                <div className="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg text-center shadow-md transform hover:shadow-xl transition-transform duration-300 ease-in-out group ">
+                  <h2 className="text-ml font-poppins dark:text-black font-semibold">
+                    {title}
+                  </h2>
+                  <div className="flex flex-col justify-center items-center mt-4">
+                    <Link href={`./categories/${title}`}>
+                      <button className="bg-RedPoppy hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        View Category
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             )
           })}
@@ -131,4 +145,4 @@ function ProductSlider({ products }) {
   )
 }
 
-export default ProductSlider
+export default CategoriesSlider

@@ -11,12 +11,12 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/echri-icon.svg" />
       </Head>
       <body>
         <Main />
         <NextScript />
       </body>
-      <Footer />
     </Html>
   )
 }

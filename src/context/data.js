@@ -1,6 +1,6 @@
 import lilia from "../images/lilia.png"
 import abdelghani from "../images/ghani_pic_compressed.jpg"
-import khalil from "../images/echri.svg"
+import khalil from "../images/khalil.jpg"
 import khaoula from "../images/echri.svg"
 import brahim from "../images/02.jpg"
 import sara from "../images/echri.svg"
@@ -66,4 +66,33 @@ export const members = [
     linkedinLink: "https://www.linkedin.com/in/brahim-hadj-mahammed-b77843156",
     image: brahim,
   },
+]
+
+export const categoriesImgs = [
+  { Smartphones: "https://tinyurl.com/category-smartphones" },
+  { Laptops: "https://tinyurl.com/category-laptop" },
+  { Fragrances: "https://tinyurl.com/category-fragrance" },
+  { Skincare: "https://tinyurl.com/category-care" },
+  { Groceries: "https://tinyurl.com/category-groceries" },
+  // home-decoration:
+  { Furniture: "https://tinyurl.com/category-furnitur" },
+  { Tops: "https://tinyurl.com/category-top" },
+  // womens-dresses:
+  // womens-shoes:
+  // mens-shirts:
+  // mens-shoes:
+  { Watches: "https://tinyurl.com/category-mens-watche" },
+  // womens-watches:
+  { Bags: "https://tinyurl.com/category-ba" },
+  // womens-jewellery:
+  { Sunglasses: "https://tinyurl.com/category-glasse" },
+  { Automotive: "https://tinyurl.com/category-automotive" },
+  { Motorcycle: "https://tinyurl.com/category-motorcycle" },
+  { Lighting: "https://tinyurl.com/category-lighting" },
+]
+
+export const images = [
+  "https://tinyurl.com/Echeri",
+  "https://tinyurl.com/Echeri2",
+  "https://tinyurl.com/Echeri3",
 ]

@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react"
 import fetcher from "@/util/API"
 import { FiTruck, FiRepeat } from "react-icons/fi"
 import ProductCard from "@/components/ProductCard/ProductCard"
+import RelatedSlider from "@/components/ProductSlider/RelatedSlider"
+import { useAppcontext } from "@/context/state"
+import { auth } from "@/util/firebase"
+import { fetchUserCart } from "@/util/firebase"
+import { updateFirestoreCart } from "@/util/firebase"
 
 export default function SingleProduct({ productDetail }) {
-  console.log("product", productDetail.category)
+  // console.log("product", productDetail.category)
   useEffect(() => {
     setSelectedImg(productDetail.images[0])
     fetcher(`/search?q=${qte}`).then((res) => {
       setRelated(res.products)
-      console.log("res", res.products)
+      // console.log("res", res.products)
     })
   }, [productDetail])
   // console.log('prodeuct details', productDetail)
@@ -17,14 +22,35 @@ export default function SingleProduct({ productDetail }) {
   const [selectedImg, setSelectedImg] = useState(AllImages[0])
   const [qte, setQte] = useState(1)
   const [related, setRelated] = useState([])
+  const { addToCart, isLogged } = useAppcontext()
+
+  const cartProduct = {
+    title: productDetail.title,
+    brand: productDetail.brand,
+    price: productDetail.price,
+    thumbnail: productDetail.thumbnail,
+    id: productDetail.id,
+    quantity: qte,
+  }
+  const handleAddToCart = async () => {
+    if (isLogged) {
+      const userId = auth?.currentUser?.uid
+      const userCartData = await fetchUserCart(userId)
+
+      updateFirestoreCart(userId, userCartData)
+      addToCart(cartProduct)
+    } else {
+      alert("Please log in and enjoy exclusive offers")
+    }
+  }
 
   const [backgroundPosition, setbackgroundPosition] = useState()
 
   const sideImages = AllImages.filter((img) => {
     return img !== selectedImg
   })
-  console.log("side images", sideImages)
-  console.log("selected Img", AllImages[selectedImg])
+  // console.log("side images", sideImages)
+  // console.log("selected Img", AllImages[selectedImg])
 
   const handleMouseMove = (e) => {
     const { left, top, width, height } = e.target.getBoundingClientRect()
@@ -119,7 +145,10 @@ export default function SingleProduct({ productDetail }) {
                 +
               </button>
             </span>
-            <button className="w-fit px-2 h-12 text-white bg-RedPoppy rounded font-medium md:text-xl lg:text-xl text-lg">
+            <button
+              onClick={handleAddToCart}
+              className="w-fit px-2 h-12 text-white bg-RedPoppy rounded font-medium md:text-xl lg:text-xl text-lg"
+            >
               + Add to cart
             </button>
           </div>
@@ -146,18 +175,19 @@ export default function SingleProduct({ productDetail }) {
           </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col gap-8 w-full items-center">
+      <div className="mt-10 mb-20 flex flex-col gap-8 w-full items-center">
         <h1
           className="text-2xl font-bold w-4/5 relative text-left after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px
         after:content[''] after:bg-EnglishViolet"
         >
           Related products
         </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-around w-4/5 px-8 gap-10">
+        <div className="grid grid-cols-2  lg:flex items-center justify-around w-4/5 px-8 gap-10">
           {related.slice(0, 4).map((product) => (
             <ProductCard key={product.id} {...product} className=" w-fit" />
           ))}
         </div>
+        {/* <RelatedSlider products={related} /> */}
       </div>
     </main>
   )

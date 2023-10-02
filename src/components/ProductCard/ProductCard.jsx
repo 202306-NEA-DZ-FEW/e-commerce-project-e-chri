@@ -25,15 +25,15 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
       updateFirestoreCart(userId, userCartData)
       addToCart(product)
     } else {
-      alert("Log in")
+      alert("Please log in and enjoy exclusive offers")
     }
   }
 
   return (
-    <div class="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+    <div className="w-64 h-80 p-4 bg-DarkWhite dark:bg-EnglishViolet rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out group">
       <div className="relative">
         <img
-          class="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
+          className="w-full h-40  rounded-t-lg object-fill group-hover:object-cover transition-all ease-in-out duration-500"
           src={thumbnail}
           alt={title}
         />
@@ -44,15 +44,15 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
           View more!
         </Link>
       </div>
-      <div class="p-4">
-        <h2 class="text-ml font-poppins dark:text-black font-semibold">
+      <div className="p-4">
+        <h2 className="text-ml font-poppins dark:text-black font-semibold">
           {title}
         </h2>
-        <p class="text-[#DB4444] font-semibold">${price}</p>
-        <div class="flex justify-between items-center mt-4">
+        <p className="text-[#DB4444] font-semibold">${price}</p>
+        <div className="flex justify-between items-center mt-4">
           <button
             onClick={handleAddToCart}
-            class="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="bg-RedPoppy w-full hover:bg-OxfordBlue text-xs text-DarkWhite font-poppins px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             Add To Cart
           </button>
