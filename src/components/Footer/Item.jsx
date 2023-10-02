@@ -4,7 +4,7 @@ import { BsLinkedin } from "react-icons/bs"
 
 export default function Item({ name, githubLink, linkedinLink, image }) {
   return (
-    <div className="bg-white dark:bg-OxfordBlue shadow-inner hover:shadow-EnglishViolet transform hover:scale-105 rounded-lg p-4 text-center ">
+    <div className="bg-DarkWhite dark:bg-OxfordBlue shadow-inner hover:shadow-EnglishViolet transform hover:scale-105 rounded-lg p-4 text-center ">
       <div className=" text-lg font-semibold text-center">
         <Image
           src={image}
@@ -20,7 +20,7 @@ export default function Item({ name, githubLink, linkedinLink, image }) {
         <a href={githubLink} target="_blank">
           <span
             className="p-2 cursor-pointer inline-flex items-center
-    bg-gray-700 mx-1.5 text-xl hover:text-gray-100 hover:bg-RedPoppy
+            bg-gray-400 dark:bg-gray-700 mx-1.5 text-xl hover:text-gray-100 hover:bg-RedPoppy
     duration-300 rounded-full h-8 w-8 flex items-center justify-center"
           >
             <BsGithub />
@@ -29,7 +29,7 @@ export default function Item({ name, githubLink, linkedinLink, image }) {
         <a href={linkedinLink} target="_blank">
           <span
             className="p-2 cursor-pointer inline-flex items-center
-    bg-gray-700 mx-1.5 text-xl hover:text-gray-100 hover:bg-RedPoppy
+            bg-gray-400 dark:bg-gray-700 mx-1.5 text-xl hover:text-gray-100 hover:bg-RedPoppy
     duration-300 rounded-full h-8 w-8 flex items-center justify-center"
           >
             <BsLinkedin />
