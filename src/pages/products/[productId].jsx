@@ -182,12 +182,12 @@ export default function SingleProduct({ productDetail }) {
         >
           Related products
         </h1>
-        {/* <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-around w-4/5 px-8 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-around w-4/5 px-8 gap-10">
           {related.slice(0, 4).map((product) => (
             <ProductCard key={product.id} {...product} className=" w-fit" />
           ))}
-        </div> */}
-        <RelatedSlider products={related} />
+        </div>
+        {/* <RelatedSlider products={related} /> */}
       </div>
     </main>
   )
