@@ -175,7 +175,7 @@ export default function SingleProduct({ productDetail }) {
           </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col gap-8 w-full items-center">
+      <div className="mt-10 mb-20 flex flex-col gap-8 w-full items-center">
         <h1
           className="text-2xl font-bold w-4/5 relative text-left after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px
         after:content[''] after:bg-EnglishViolet"

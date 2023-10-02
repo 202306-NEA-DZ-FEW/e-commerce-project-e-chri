@@ -24,7 +24,7 @@ function Slider({ images }) {
   }, [])
 
   return (
-    <div className="relative">
+    <div className="relative mb-24">
       <div
         id="carouselExampleIndicators"
         className="w-full relative"
