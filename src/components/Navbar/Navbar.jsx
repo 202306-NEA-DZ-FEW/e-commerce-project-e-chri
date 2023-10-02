@@ -22,7 +22,7 @@ function Navbar({}) {
   const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
   const [smNav, setSmNav] = useState(false)
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const {
     categories,
     isLogged,
