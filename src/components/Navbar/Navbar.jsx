@@ -15,6 +15,7 @@ import { auth } from "@/util/firebase"
 import LogOut from "./LogOut"
 import Image from "next/image"
 import logo from "../../images/logoo.png"
+import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 import SmNavBar from "./SmNavBar"
 
 function Navbar({}) {
@@ -104,6 +105,7 @@ function Navbar({}) {
                 value="Search"
                 className="bg-RedPoppy h-10  text-white rounded-r-full w-1/4"
               />
+              {isShoppingCartOpen && <ShoppingCart />}
             </form>
           </div>
           <div className="lg:w-1/3 flex items-center justify-around w-full ">

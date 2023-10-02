@@ -20,7 +20,7 @@ export default function ShoppingCart() {
     <div
       className={`fixed inset-0 bg-black bg-opacity-50 ${
         open ? "block" : "hidden"
-      }`}
+      } z-50`}
     >
       <div className="fixed inset-y-0 right-0 w-[400px] overflow-y-auto bg-white dark:bg-OxfordBlue shadow-xl transform translate-x-0 transition-transform">
         <div className="p-6">
