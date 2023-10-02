@@ -23,11 +23,11 @@ export default function SmNavBar({
   const [openUser, setOpenUser] = useState(false)
   const { user } = useAppcontext()
   const logBtn = isLogged ? (
-    <div className="text-2xl text-OxfordBlue dark:text-white font-bold flex flex-col w-full p-4 gap-4">
+    <div className="text-xl text-OxfordBlue dark:text-white font-semibold flex flex-col w-full  gap-4">
       {/* <FiUser onClick={handleLogOut} /> */}
       {/* <LogOut signOut={handleLogOut} /> */}
       <span
-        className="w-full h-fit p-2 border border-gray-400 shadow-md"
+        className="w-full h-fit p-2 after:content[''] after:absolute after:bg-EnglishViolet after:dark:bg-DarkWhite relative after:h-px after:w-11/12 after:bottom-0 after:left-0"
         onClick={() => {
           setOpenUser(!openUser)
         }}
@@ -35,11 +35,15 @@ export default function SmNavBar({
         Account
       </span>
       <div
-        className={`w-full  lg:hidden clear flex flex-col justify-around overflow-hidden
-        ${openUser ? "h-fit" : "h-0"} transition-all ease-in-out duration-1000`}
+        className={`w-11/12  lg:hidden clear flex flex-col justify-between overflow-hidden
+        ${
+          openUser ? "h-fit" : "h-0"
+        } pl-6 transition-all ease-in-out duration-1000 `}
       >
-        <span>{user.displayName || "E-chri's favourite customer"}</span>
-        <span>
+        <span className="hover:border-b border-EnglishViolet dark:border-RedPoppy">
+          {user.displayName || "E-chri's favourite customer"}
+        </span>
+        <span className="hover:border-b border-EnglishViolet dark:border-RedPoppy">
           <Link
             href="https://github.com/202306-NEA-DZ-FEW/e-commerce-project-e-chri"
             className=""
@@ -47,12 +51,16 @@ export default function SmNavBar({
             Github
           </Link>
         </span>
-        <span>
+        <span className="hover:border-b border-EnglishViolet dark:border-RedPoppy">
           <Link href="./#footer" className="">
             About us
           </Link>
         </span>
-        <span onClick={handleLogOut} type="submit" className="">
+        <span
+          onClick={handleLogOut}
+          type="submit"
+          className="hover:border-b border-EnglishViolet dark:border-RedPoppy"
+        >
           Sign out
         </span>
       </div>
@@ -61,7 +69,7 @@ export default function SmNavBar({
           setIsShoppingCartOpen(!isShoppingCartOpen)
           setSmNav(false)
         }}
-        className="text-lg text-OxfordBlue dark:text-white font-semibold w-8 h-8"
+        className="w-full text-left h-fit p-2 after:content[''] after:absolute after:bg-EnglishViolet after:dark:bg-DarkWhite relative after:h-px after:w-11/12 after:bottom-0 after:left-0"
       >
         Cart
       </button>
@@ -129,7 +137,7 @@ export default function SmNavBar({
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-DarkWhite dark:bg-EnglishViolet py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
                       <Dialog.Title className="text-center mt-2 font-semibold leading-6 text-gray-900">
                         <Image
@@ -170,7 +178,7 @@ export default function SmNavBar({
                       </form>
                       {logBtn}
                       <span
-                        className="w-full h-fit p-2 border border-gray-400 shadow-md"
+                        className="w-full font-semibold text-xl h-fit p-2 after:content[''] after:absolute after:bg-EnglishViolet after:dark:bg-DarkWhite relative after:h-px after:w-11/12 after:bottom-0 after:left-0"
                         onClick={() => {
                           setOpenCat(!openCat)
                         }}
@@ -178,16 +186,18 @@ export default function SmNavBar({
                         Categories
                       </span>
                       <div
-                        className={`w-full  lg:hidden clear flex flex-col justify-around overflow-hidden
+                        className={`w-11/12 pl-6 lg:hidden clear flex flex-col justify-around overflow-hidden
                         ${
                           openCat ? "h-fit" : "h-0"
-                        } transition-all ease-in-out duration-1000`}
+                        } transition-all ease-in-out duration-[3s]`}
                       >
                         {categories.map((cat) => (
-                          <span key={cat} className="text-base font-medium">
+                          <span
+                            key={cat}
+                            className="text-lg font-semibold hover:text-RedPoppy hover:border-b border-b-RedPoppy"
+                          >
                             <Link
                               onClick={() => setSmNav(false)}
-                              className="hover:border-b border-b-[#1E4445] hover:text-RedPoppy"
                               href={`/categories/${cat}`}
                             >
                               {cat}
