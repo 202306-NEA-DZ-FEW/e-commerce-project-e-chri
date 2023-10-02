@@ -23,20 +23,15 @@ export default function Home({ products, categories }) {
     setTheme(darkMode ? "light" : "dark")
   }, [darkMode])
 
-  // function handleMode() {
-  //   toggledarkMode()
-  //   setTheme(darkMode ? "light" : "dark")
-  // }
+  function handleMode() {
+    toggledarkMode()
+    setTheme(darkMode ? "light" : "dark")
+  }
   // ;[darkMode]
   // console.log({ Categories })
 
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
-      {/* <div className="w-20 h-20 ">
-        <button onClick={handleMode} className="bg-red-400">
-          toggle
-        </button>
-      </div> */}
       <Slider images={images} />
       <ProductSlider products={products} />
       <div className="flex items-center justify-center">

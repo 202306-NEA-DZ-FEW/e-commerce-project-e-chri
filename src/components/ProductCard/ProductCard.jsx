@@ -25,7 +25,7 @@ export default function ProductCard({ title, price, thumbnail, brand, id }) {
       updateFirestoreCart(userId, userCartData)
       addToCart(product)
     } else {
-      alert("Log in")
+      alert("Please log in and enjoy exclusive offers")
     }
   }
 

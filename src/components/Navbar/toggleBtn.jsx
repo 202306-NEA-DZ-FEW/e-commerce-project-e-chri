@@ -1,13 +1,16 @@
 import React, { useState } from "react"
 import styles from "../../styles/toggleBtn.module.css"
 import { useAppcontext } from "@/context/state"
+import { useTheme } from "next-themes"
 
-export default function ToggleButton({}) {
+export default function ToggleButton({ toggle }) {
+  const { theme, setTheme } = useTheme()
   const [isChecked, setIsChecked] = useState(false)
-  const { toggledarkMode } = useAppcontext()
+  const { toggledarkMode, darkMode } = useAppcontext()
   function handleToggle() {
     // toggle()
     toggledarkMode()
+    setTheme(darkMode ? "light" : "dark")
     setIsChecked(!isChecked)
   }
   return (

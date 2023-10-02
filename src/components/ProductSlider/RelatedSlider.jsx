@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import ProductCard from "@/components/ProductCard/ProductCard"
 import Link from "next/link"
 
-function ProductSlider({ products }) {
+function RelatedSlider({ products }) {
   const maxScrollWidth = useRef(0)
   const [currentIndex, setCurrentIndex] = useState(0)
   const carousel = useRef(null)
@@ -107,9 +107,9 @@ function ProductSlider({ products }) {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-6 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative flex gap-0 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {products.products.map((product, index) => {
+          {products.map((product, index) => {
             return (
               <div
                 key={index}
@@ -131,4 +131,4 @@ function ProductSlider({ products }) {
   )
 }
 
-export default ProductSlider
+export default RelatedSlider

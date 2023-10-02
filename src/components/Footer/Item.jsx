@@ -13,7 +13,9 @@ export default function Item({ name, githubLink, linkedinLink, image }) {
           className=" w-20 h-20 mx-auto rounded-full mb-2"
         />
       </div>
-      <h2 className="text-l font-base my-4 font-Poppins">{name}</h2>
+      <h2 className="text-l dark:text-white font-base my-4 font-Poppins">
+        {name}
+      </h2>
       <div className=" mt-2 text-center">
         <a href={githubLink} target="_blank">
           <span
