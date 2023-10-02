@@ -5,7 +5,7 @@ import ProductCard from "@/components/ProductCard/ProductCard"
 export default function Category({ productCategory }) {
   return (
     <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-2 gap-y-8 m-20">
+      <div className="grid grid-cols-2 lg:flex sm:grid-cols-4 gap-x-2 gap-y-8 m-20">
         {productCategory.products.map((product) => (
           <div key={product.id}>
             <ProductCard {...product} />
