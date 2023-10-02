@@ -16,7 +16,7 @@ const LoginForm = ({ tab }) => {
     setPassword(e.target[1].value)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user)
+        // console.log(userCredential.user)
         authChange()
         router.push("/")
       })

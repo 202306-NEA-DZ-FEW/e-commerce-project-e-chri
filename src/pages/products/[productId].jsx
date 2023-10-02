@@ -9,7 +9,7 @@ import { fetchUserCart } from "@/util/firebase"
 import { updateFirestoreCart } from "@/util/firebase"
 
 export default function SingleProduct({ productDetail }) {
-  console.log("product", productDetail.category)
+  // console.log("product", productDetail.category)
   useEffect(() => {
     setSelectedImg(productDetail.images[0])
     fetcher(`/search?q=${qte}`).then((res) => {

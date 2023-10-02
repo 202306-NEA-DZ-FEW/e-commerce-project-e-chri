@@ -8,6 +8,7 @@ import LogOut from "./LogOut"
 import Link from "next/link"
 import { categories } from "@/context/data"
 import { useAppcontext } from "@/context/state"
+import ShoppingCart from "@/components/ShoppingCart/ShoppingCart"
 
 export default function SmNavBar({
   handleLogOut,
@@ -17,6 +18,7 @@ export default function SmNavBar({
   isLogged,
   isShoppingCartOpen,
   setIsShoppingCartOpen,
+  setOpen,
 }) {
   //   const [open, setOpen] = useState(true)
   const [openCat, setOpenCat] = useState(false)
@@ -66,8 +68,9 @@ export default function SmNavBar({
       </div>
       <button
         onClick={() => {
-          setIsShoppingCartOpen(!isShoppingCartOpen)
+          setIsShoppingCartOpen(true)
           setSmNav(false)
+          setOpen(true)
         }}
         className="w-full text-left h-fit p-2 after:content[''] after:absolute after:bg-EnglishViolet after:dark:bg-DarkWhite relative after:h-px after:w-11/12 after:bottom-0 after:left-0"
       >
@@ -176,6 +179,7 @@ export default function SmNavBar({
                           <FiSearch />
                         </button>
                       </form>
+
                       {logBtn}
                       <span
                         className="w-full font-semibold text-xl h-fit p-2 after:content[''] after:absolute after:bg-EnglishViolet after:dark:bg-DarkWhite relative after:h-px after:w-11/12 after:bottom-0 after:left-0"

@@ -22,6 +22,7 @@ function Navbar({}) {
   const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
   const [smNav, setSmNav] = useState(false)
+  const [open, setOpen] = useState(true)
   const {
     categories,
     isLogged,
@@ -34,6 +35,9 @@ function Navbar({}) {
   } = useAppcontext()
   const router = useRouter()
 
+  function handleClose() {
+    setOpen(false)
+  }
   function handleMode() {
     toggledarkMode()
     setTheme(darkMode ? "light" : "dark")
@@ -58,7 +62,10 @@ function Navbar({}) {
       {/* <FiUser onClick={handleLogOut} /> */}
       <LogOut signOut={handleLogOut} />
       <FiShoppingCart
-        onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)}
+        onClick={() => {
+          setIsShoppingCartOpen(!isShoppingCartOpen)
+          setOpen(true)
+        }}
         className="text-lg font-semibold w-8 h-8"
       />
     </div>
@@ -105,7 +112,9 @@ function Navbar({}) {
                 value="Search"
                 className="bg-RedPoppy h-10  text-white rounded-r-full w-1/4"
               />
-              {isShoppingCartOpen && <ShoppingCart />}
+              {isShoppingCartOpen && (
+                <ShoppingCart open={open} handleClose={handleClose} />
+              )}
             </form>
           </div>
           <div className="lg:w-1/3 flex items-center justify-around w-full ">
@@ -132,9 +141,7 @@ function Navbar({}) {
           ))}
         </div>
       </div>
-      <div
-        className={`flex flex-col lg:hidden w-full h-full items-center justify-around`}
-      >
+      <div className="flex flex-col lg:hidden w-full h-full items-center justify-around">
         <div
           className={`${
             !smNav ? "flex" : "hidden"
@@ -147,6 +154,7 @@ function Navbar({}) {
             onClick={() => setSmNav(true)}
           />
         </div>
+        {<ShoppingCart open={open} handleClose={handleClose} />}
         <SmNavBar
           isShoppingCartOpen={isShoppingCartOpen}
           setIsShoppingCartOpen={setIsShoppingCartOpen}
@@ -155,6 +163,7 @@ function Navbar({}) {
           smNav={smNav}
           setSmNav={setSmNav}
           handleSearch={handleSearch}
+          setOpen={setOpen}
         />
       </div>
     </nav>
