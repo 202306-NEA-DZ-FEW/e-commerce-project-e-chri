@@ -14,11 +14,11 @@ const RegistrationForm = ({ tab }) => {
     setPassword(e.target[2].value)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user)
+        // console.log(userCredential.user)
         updateProfile(userCredential.user, { displayName: name })
           .then((cred) => {
             // const user = userCredential.user;
-            console.log(cred)
+            // console.log(cred)
           })
           .catch((err) => {
             console.log("updating error", err)

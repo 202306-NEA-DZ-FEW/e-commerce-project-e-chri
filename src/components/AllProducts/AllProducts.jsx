@@ -11,12 +11,12 @@ export default function AllProducts({
   search_value,
 }) {
   const displayed = products.products.filter((pro) => {
-    console.log(
-      "test displayed",
-      pro["title"],
-      pro["title"].includes(search_value),
-    )
-    console.log("search ", search_value)
+    // console.log(
+    //   "test displayed",
+    //   pro["title"],
+    //   pro["title"].includes(search_value),
+    // )
+    // console.log("search ", search_value)
     if (
       rating_value === 0 &&
       price_value === 2500 &&

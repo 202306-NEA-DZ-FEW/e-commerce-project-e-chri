@@ -2,8 +2,8 @@ import { Fragment, useState } from "react"
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
 import { useAppcontext } from "@/context/state"
 
-export default function ShoppingCart() {
-  const [open, setOpen] = useState(true)
+export default function ShoppingCart({ open, handleClose }) {
+  // const [open, setOpen] = useState(true)
   const { cart, removeFromCart } = useAppcontext()
 
   const calculateTotal = () => {
@@ -36,7 +36,7 @@ export default function ShoppingCart() {
             <button
               type="button"
               className="p-2 text-gray hover:text-gray"
-              onClick={() => setOpen(false)}
+              onClick={handleClose}
             >
               <span className="sr-only">Close panel</span>
               <svg
@@ -121,7 +121,7 @@ export default function ShoppingCart() {
               <button
                 type="button"
                 className="dark:text-gray-500 font-medium font-opensans text-EnglishViolet dark:hover:text-DarkWhite hover:text-OxfordBlue"
-                onClick={() => setOpen(false)}
+                onClick={handleClose}
               >
                 Continue Shopping
                 <span aria-hidden="true"> &rarr;</span>
