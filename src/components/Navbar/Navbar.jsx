@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 import Link from "next/link"
-import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
+import {
+  FiSearch,
+  FiShoppingCart,
+  FiAlignJustify,
+  FiUser,
+} from "react-icons/fi"
 import { useAppcontext } from "@/context/state"
 import ToggleBtn from "./toggleBtn"
 import { useTheme } from "next-themes"
@@ -10,10 +15,12 @@ import { auth } from "@/util/firebase"
 import LogOut from "./LogOut"
 import Image from "next/image"
 import logo from "../../images/logoo.png"
+import SmNavBar from "./SmNavBar"
 
 function Navbar({}) {
   const { theme, setTheme } = useTheme()
   const [wideBar, setWideBar] = useState(false)
+  const [smNav, setSmNav] = useState(false)
   const {
     categories,
     isLogged,
@@ -65,7 +72,7 @@ function Navbar({}) {
   )
   return (
     <nav className="bg-[#F7F7FC] dark:bg-[#4E4B66] w-full h-32 px-5 py-2 flex items-center">
-      <div className="flex flex-col w-full gap-7 ">
+      <div className="lg:flex flex-col w-full gap-7 hidden ">
         <div
           className='md:flex flex-row items-center w-full justify-around relative after:content:"" after:h-px after:w-11/12 after:absolute after:bg-OxfordBlue 
             after:dark:bg-DarkWhite after:-bottom-3 sm:items-end '
@@ -110,7 +117,7 @@ function Navbar({}) {
             <ToggleBtn toggle={handleMode} />
           </div>
         </div>
-        <div className="w-full flex flex-row justify-around">
+        <div className="w-full hiddenclear lg:flex flex-row justify-around">
           {categories.map((cat) => (
             <span key={cat} className="text-base font-medium">
               <Link
@@ -123,7 +130,31 @@ function Navbar({}) {
           ))}
         </div>
       </div>
-      <div className="flex md:hidden"></div>
+      <div
+        className={`flex flex-col lg:hidden w-full h-full items-center justify-around`}
+      >
+        <div
+          className={`${
+            !smNav ? "flex" : "hidden"
+          } w-full h-full flex-row justify-between items-center`}
+        >
+          <Image src={logo} width={100} height={100} alt="Logo-Echri" />
+          <ToggleBtn toggle={handleMode} />
+          <FiAlignJustify
+            className="font-bold text-4xl dark:text-white text-OxfordBlue"
+            onClick={() => setSmNav(true)}
+          />
+        </div>
+        <SmNavBar
+          isShoppingCartOpen={isShoppingCartOpen}
+          setIsShoppingCartOpen={setIsShoppingCartOpen}
+          handleLogOut={handleLogOut}
+          isLogged={isLogged}
+          smNav={smNav}
+          setSmNav={setSmNav}
+          handleSearch={handleSearch}
+        />
+      </div>
     </nav>
   )
 }
