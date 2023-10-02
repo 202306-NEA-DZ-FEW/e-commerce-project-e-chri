@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="dark:bg-OxfordBlue bg-RedPoppy dark:text-white text-black h-50 bottom-0 w-full"
+      className="dark:bg-EnglishViolet bg-RedPoppy dark:text-white text-black h-50 bottom-0 w-full"
     >
       <ItemsContainer />
       <div className="text-center pt-2 text-OxfordBlue dark:DarkWhite text-sm pb-8">
