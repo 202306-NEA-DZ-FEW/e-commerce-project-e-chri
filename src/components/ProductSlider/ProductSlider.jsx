@@ -107,7 +107,7 @@ function ProductSlider({ products }) {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-0 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative flex gap-6 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
           {products.products.map((product, index) => {
             return (

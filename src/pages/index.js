@@ -29,11 +29,6 @@ export default function Home({ products, categories }) {
 
   return (
     <main className="bg-DarkWhite  dark:bg-OxfordBlue ">
-      <div className="w-20 h-20 ">
-        <button onClick={handleMode} className="bg-red-400">
-          toggle
-        </button>
-      </div>
       <Slider images={images} />
       <ProductSlider products={products} />
       <div className="flex items-center justify-center">
