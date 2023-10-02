@@ -49,7 +49,7 @@ function ProductSlider({ products }) {
   }, [])
 
   return (
-    <div className="carousel my-12 mx-20">
+    <div className="carousel my-32 mx-20">
       <div className="flex justify-between ">
         <h5 className="text-2xl leading-8 font-poppins font-bold mb-8 text-OxfordBlue dark:text-DarkWhite">
           Explore Our Latest Products
