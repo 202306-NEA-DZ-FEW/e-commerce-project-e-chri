@@ -5,8 +5,8 @@ import { RiShieldCheckFill } from "react-icons/ri"
 
 export default function Services() {
   return (
-    <div className="mx-20 my-36 sm:flex">
-      <div className="flex flex-col md:flex-row justify-center ml-20 lg:space-x-64 sm:space-y-20 md:space-x-36 sm:space-x-0">
+    <div className=" my-36 sm:flex ">
+      <div className="flex flex-col md:flex-row justify-center lg:space-x-64 sm:space-y-20 md:space-x-36 sm:space-x-0">
         <div className="text-center">
           <div className="bg-OxfordBlue dark:bg-DarkWhite text-DarkWhite dark:text-black text-6xl w-28 h-28 border-8 border-gray-400 flex items-center justify-center rounded-full hover:bg-opacity-80 transition-all duration-300">
             <TbTruckDelivery />
